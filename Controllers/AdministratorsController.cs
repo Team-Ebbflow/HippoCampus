@@ -28,18 +28,16 @@ namespace HippocampusUON.Controllers
             return await _context.Administrators.ToListAsync();
         }
 
-        // GET: api/Administrators/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Administrator>> GetAdministrator(int id)
+        // GET: api/Administrators/email=,password=
+        [HttpGet("email={email}&password={password}")]
+        public async Task<ActionResult<int>> GetAdministrators(string email, string password)
         {
-            var administrator = await _context.Administrators.FindAsync(id);
-
-            if (administrator == null)
+            Administrator admin = await _context.Administrators.SingleOrDefaultAsync(x => x.adminEmail == email);
+            if (admin == null)
             {
-                return NotFound();
+                return -2;
             }
-
-            return administrator;
+            return password == admin.adminPassword ? 1 : -1;
         }
 
         // PUT: api/Administrators/5
