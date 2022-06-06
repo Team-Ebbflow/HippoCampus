@@ -22,11 +22,19 @@ namespace HippocampusUON
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllersWithViews();
 
             services.AddDbContext<WebAPIDBContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
+
+            services.AddAuthentication()
+                .AddCookie(options =>
+                {
+                    // change this line to the "authentication failed page"
+                    options.LoginPath = "/fetch-data";
+                    options.SlidingExpiration = true;
+                    options.ExpireTimeSpan = System.TimeSpan.FromMinutes(15);
+                });
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -54,6 +62,12 @@ namespace HippocampusUON
             app.UseSpaStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthorization();
+            app.UseCookiePolicy(new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Strict
+            });
 
             app.UseEndpoints(endpoints =>
             {

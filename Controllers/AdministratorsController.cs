@@ -7,14 +7,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HippocampusUON;
 using HippocampusUON.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 
 namespace HippocampusUON.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = AuthSchemes)]
     public class AdministratorsController : ControllerBase
     {
         private readonly WebAPIDBContext _context;
+        // For now we only uses Cookie authentication as it's simpler, for enhanced security can use JWT or OAUTH
+        private const string AuthSchemes =
+            CookieAuthenticationDefaults.AuthenticationScheme;
 
         public AdministratorsController(WebAPIDBContext context)
         {
@@ -25,30 +33,52 @@ namespace HippocampusUON.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Administrator>>> GetAdministrators()
         {
-            return await _context.Administrators.ToListAsync();
+            return await _context.Administrators
+                .Select(x => new Administrator { adminId = x.adminId, adminEmail = x.adminEmail, adminFirstName = x.adminFirstName, adminLastName = x.adminLastName, adminMobile = x.adminMobile})
+                .ToListAsync();
         }
 
-        // GET: api/Administrators/email=,password=
+        // GET: api/Administrators/email={email}&password={password}
+        // return: 1: Login Successful, -1: Password Incorrect, -2: User not existing 
         [HttpGet("email={email}&password={password}")]
-        public async Task<ActionResult<int>> GetAdministrators(string email, string password)
+        [AllowAnonymous]
+        public async Task<ActionResult<string>> LoginAdmin(string email, string password)
         {
             Administrator admin = await _context.Administrators.SingleOrDefaultAsync(x => x.adminEmail == email);
             if (admin == null)
             {
-                return -2;
+                return "-2";
             }
-            return password == admin.adminPassword ? 1 : -1;
+
+            if (password != admin.adminPassword)
+            {
+                return "-1";
+            }
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, admin.adminEmail),
+                new Claim("FullName", admin.adminFirstName + " " + admin.adminLastName),
+                new Claim(ClaimTypes.Role, "Administrator"),
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity));
+
+            return "1";
         }
 
         // PUT: api/Administrators/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        // return: 1: Update successful, -1: input adminId is missing or not same as in the HttpPut call, -2: the id does not exist
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAdministrator(int id, Administrator administrator)
+        public async Task<ActionResult<string>> PutAdministrator(int id, Administrator administrator)
         {
             if (id != administrator.adminId)
             {
-                return BadRequest();
+                return "-1";
             }
 
             _context.Entry(administrator).State = EntityState.Modified;
@@ -61,7 +91,7 @@ namespace HippocampusUON.Controllers
             {
                 if (!AdministratorExists(id))
                 {
-                    return NotFound();
+                    return "-2";
                 }
                 else
                 {
@@ -69,35 +99,42 @@ namespace HippocampusUON.Controllers
                 }
             }
 
-            return NoContent();
+            return "1";
         }
 
         // POST: api/Administrators
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        // return: 1: Post Successful
         [HttpPost]
-        public async Task<ActionResult<Administrator>> PostAdministrator(Administrator administrator)
+        public async Task<ActionResult<string>> PostAdministrator(Administrator administrator)
         {
             _context.Administrators.Add(administrator);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAdministrator", new { id = administrator.adminId }, administrator);
+            return "1";
         }
 
         // DELETE: api/Administrators/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Administrator>> DeleteAdministrator(int id)
+        public async Task<ActionResult<string>> DeleteAdministrator(int id)
         {
             var administrator = await _context.Administrators.FindAsync(id);
             if (administrator == null)
             {
-                return NotFound();
+                return "-1";
             }
 
             _context.Administrators.Remove(administrator);
             await _context.SaveChangesAsync();
 
-            return administrator;
+            return "1";
+        }
+
+        // Get current login status: api/Administrators/login_status
+        [HttpGet("login_status")]
+        [AllowAnonymous]
+        public ActionResult<bool> IsAdministrator()
+        {
+            return HttpContext.User.Identity.IsAuthenticated;
         }
 
         private bool AdministratorExists(int id)
