@@ -42,17 +42,17 @@ namespace HippocampusUON.Controllers
         // return: 1: Login Successful, -1: Password Incorrect, -2: User not existing 
         [HttpGet("email={email}&password={password}")]
         [AllowAnonymous]
-        public async Task<ActionResult<string>> LoginAdmin(string email, string password)
+        public async Task<ActionResult> LoginAdmin(string email, string password)
         {
             Administrator admin = await _context.Administrators.SingleOrDefaultAsync(x => x.adminEmail == email);
             if (admin == null)
             {
-                return "-2";
+                return ValidationProblem("The user does not exist"); 
             }
 
             if (password != admin.adminPassword)
             {
-                return "-1";
+                return ValidationProblem("Password incorrect");
             }
 
             var claims = new List<Claim>
@@ -68,17 +68,17 @@ namespace HippocampusUON.Controllers
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity));
 
-            return "1";
+            return Ok("1");
         }
 
         // PUT: api/Administrators/5
         // return: 1: Update successful, -1: input adminId is missing or not same as in the HttpPut call, -2: the id does not exist
         [HttpPut("{id}")]
-        public async Task<ActionResult<string>> PutAdministrator(int id, Administrator administrator)
+        public async Task<ActionResult> PutAdministrator(int id, Administrator administrator)
         {
             if (id != administrator.adminId)
             {
-                return "-1";
+                return Problem("The adminId in Body is not same as in the HttpPut request", statusCode: 420);
             }
 
             _context.Entry(administrator).State = EntityState.Modified;
@@ -91,7 +91,7 @@ namespace HippocampusUON.Controllers
             {
                 if (!AdministratorExists(id))
                 {
-                    return "-2";
+                    return Problem("The adminId doesn't exist", statusCode: 420);
                 }
                 else
                 {
@@ -99,18 +99,17 @@ namespace HippocampusUON.Controllers
                 }
             }
 
-            return "1";
+            return Ok("1");
         }
 
         // POST: api/Administrators
-        // return: 1: Post Successful
         [HttpPost]
-        public async Task<ActionResult<string>> PostAdministrator(Administrator administrator)
+        public async Task<ActionResult> PostAdministrator(Administrator administrator)
         {
             _context.Administrators.Add(administrator);
             await _context.SaveChangesAsync();
 
-            return "1";
+            return Ok("1");
         }
 
         // DELETE: api/Administrators/5
@@ -120,13 +119,13 @@ namespace HippocampusUON.Controllers
             var administrator = await _context.Administrators.FindAsync(id);
             if (administrator == null)
             {
-                return "-1";
+                return Problem("The adminId doesn't exist", statusCode: 420);
             }
 
             _context.Administrators.Remove(administrator);
             await _context.SaveChangesAsync();
 
-            return "1";
+            return Ok("1");
         }
 
         // Get current login status: api/Administrators/login_status

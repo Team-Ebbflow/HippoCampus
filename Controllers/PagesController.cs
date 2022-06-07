@@ -33,8 +33,9 @@ namespace HippocampusUON.Controllers
             return await _context.PagesTable.ToListAsync();
         }
 
-        // GET: api/Pages/5
-        [HttpGet("{id}")]
+        // GET: api/Pages/page&id={id}
+        [HttpGet("page&id={id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<PagesTable>> GetPagesTable(int id)
         {
             var pagesTable = await _context.PagesTable.FindAsync(id);
@@ -45,6 +46,52 @@ namespace HippocampusUON.Controllers
             }
 
             return pagesTable;
+        }
+
+        // GET: api/pages/image&id={id}
+        [HttpGet("image&id={id}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<ImageContent>> GetImageContent(int id)
+        {
+            var imageContent = await _context.ImageContents.FindAsync(id);
+            //var imageContent = await _context.ImageContents.FromSqlInterpolated($"SELECT [dbo].[PagesTable].pageID, imageContentID, imageURI, imageDescription FROM [dbo].[ImageContents] INNER JOIN [dbo].[PagesTable] ON [dbo].[PagesTable].pageID = [dbo].[ImageContents].pageID WHERE [dbo].[ImageContents].imageContentID = {id}")
+
+            if (imageContent == null)
+            {
+                return NotFound();
+            }
+
+            return imageContent;
+        }
+
+        // GET: api/pages/link&id={id}
+        [HttpGet("link&id={id}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<LinkContent>> GetLinkContent(int id)
+        {
+            var linkContent = await _context.LinkContents.FindAsync(id);
+
+            if (linkContent == null)
+            {
+                return NotFound();
+            }
+
+            return linkContent;
+        }
+
+        // GET: api/pages/text&id={id}
+        [HttpGet("text&id={id}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<TextContent>> GetTextContent(int id)
+        {
+            var textContent = await _context.TextContents.FindAsync(id);
+
+            if (textContent == null)
+            {
+                return NotFound();
+            }
+
+            return textContent;
         }
 
         // PUT: api/Pages/5
@@ -78,8 +125,6 @@ namespace HippocampusUON.Controllers
         }
 
         // POST: api/Pages
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<PagesTable>> PostPagesTable(PagesTable pagesTable)
         {
