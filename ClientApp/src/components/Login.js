@@ -1,21 +1,31 @@
-import React, { Component } from 'react';
+import React, { useState } from "react";
 
-export class Login extends Component {
-    static displayName = Login.name;
+export default function Login() {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
-    constructor(props) {
-        super(props);
+    function handleLogin() {
+        console.log('api/administrators/email=' + username + '&password=' + password);
+        fetch('api/administrators/email=' + username + '&password=' + password)
+            .then(response => response.json())
+            .then(data => console.log(data));
     }
 
-    render () {
-        return (
-            <div>
-                <h1>Login</h1>
-
-                <input type="text" name="username" placeholder="Username" required></input>
-                <input type="password" name="password" placeholder="Password" required></input>
-                <input type="submit" value="Login"></input> 
-            </div>
-        )
-    }
+    return (
+        <div>
+            <form onSubmit={handleLogin}>
+                <label>
+                    User ID : <input type="text" name="user_id" value={username} onChange={(e) => setUsername(e.target.value)} />
+                </label>
+                <br />
+                <label>
+                    Password: <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                </label>
+                <button type="submit" value="submit">
+                    Submit
+                </button>
+            </form>
+            <button onClick={handleLogin}>Submit2</button>
+        </div>
+    );
 }
