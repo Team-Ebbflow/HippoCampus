@@ -5,6 +5,8 @@ import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import Login from './components/Login';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import './custom.css'
 
