@@ -24,20 +24,20 @@ export class NavMenu extends Component {
   render () {
     return (
       <header>
-            <Navbar bg="light" expand="lg">
-                <Container>
+            <Navbar expand="lg" style={{ backgroundColor: 'orange' }} >
+                <Container >
                     <Navbar.Brand href="#home">HippoCampusUON</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Collapse id="responsive-navbar-nav">
+                        <Nav className="ml-auto">
                             <Nav.Link href="#home">Home</Nav.Link>
-                            <Nav.Link href="#link">Freshie Guide</Nav.Link>
-                            <Nav.Link href="#link">Events</Nav.Link>
-                            <Nav.Link href="#link">Chapters & Clubs</Nav.Link>
+                            <Nav.Link href="#">Freshie Guide</Nav.Link>
+                            <Nav.Link href="#">Events</Nav.Link>
+                            <Nav.Link href="#">Chapters & Clubs</Nav.Link>
                             <NavDropdown title="Resourse" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Link 1</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Link 2</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Link 3</NavDropdown.Item>
+                                <NavDropdown.Item href="#">Link 1</NavDropdown.Item>
+                                <NavDropdown.Item href="#">Link 2</NavDropdown.Item>
+                                <NavDropdown.Item href="#">Link 3</NavDropdown.Item>
                                 <NavDropdown.Divider />
                             </NavDropdown>
                         </Nav>
