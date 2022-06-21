@@ -5,6 +5,7 @@ import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { Login } from './components/Login';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './custom.css'
 
