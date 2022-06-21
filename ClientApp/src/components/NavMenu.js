@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
+import { Navbar, NavDropdown, Nav, Container } from 'react-bootstrap';
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -24,25 +24,26 @@ export class NavMenu extends Component {
   render () {
     return (
       <header>
-        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
-          <Container>
-            <NavbarBrand tag={Link} to="/">HippocampusUON</NavbarBrand>
-            <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-            <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-              <ul className="navbar-nav flex-grow">
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
-                </NavItem>
-              </ul>
-            </Collapse>
-          </Container>
-        </Navbar>
+            <Navbar bg="light" expand="lg">
+                <Container>
+                    <Navbar.Brand href="#home">HippoCampusUON</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            <Nav.Link href="#home">Home</Nav.Link>
+                            <Nav.Link href="#link">Freshie Guide</Nav.Link>
+                            <Nav.Link href="#link">Events</Nav.Link>
+                            <Nav.Link href="#link">Chapters & Clubs</Nav.Link>
+                            <NavDropdown title="Resourse" id="basic-nav-dropdown">
+                                <NavDropdown.Item href="#action/3.1">Link 1</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.2">Link 2</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.3">Link 3</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                            </NavDropdown>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
       </header>
     );
   }
