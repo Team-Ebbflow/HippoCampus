@@ -4,7 +4,7 @@ export default function EventPage() {
 
   return (
     <div>
-      <h1>FUCK YOU LIU HAO</h1>
+      <h1>yasilalei</h1>
     </div>
 
   );
