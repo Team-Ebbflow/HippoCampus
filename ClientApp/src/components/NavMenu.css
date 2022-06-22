@@ -2,19 +2,23 @@
     background-color: #f4a460;
     font-size: 25px;
     font-family: normal;
-    margin-left: 40%;
+    margin-left: 50%;
 }
-
 
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
-  font-size: 30px;
+  margin-left: 55px;
 }
 
+.nav-link {
+    margin-left: 50px;
+}
+
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 @media (min-width: 768px) {
   html {
@@ -25,3 +29,5 @@ html {
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
+
+

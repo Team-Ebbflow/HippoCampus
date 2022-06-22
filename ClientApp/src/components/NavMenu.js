@@ -6,9 +6,15 @@ export default function NavMenu() {
 
     return (
     <header>
-         <Navbar expand="xl" style={{padding: '2%'}}>
+         <Navbar expand="xl" style={{padding: '1%'}}>
               <Container>
-                    <Navbar.Brand href="home">HippoCampusUON</Navbar.Brand>
+                    <Navbar.Brand href="home">
+                        <img
+                            src="https://cdn.discordapp.com/attachments/989084273522909234/989084301444399114/hippocampus_logo_black.png"
+                            width="100"
+                            height="100"
+                        />
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="ml-auto">
