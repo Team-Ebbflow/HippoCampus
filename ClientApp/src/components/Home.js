@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { Carousel, Card, Button } from 'react-bootstrap';
+import './style.css'
 
 export default function Home() {
 
   return (
     <div>
-      <Carousel>
+      <Carousel id='carouselMain'>
         <Carousel.Item>
           <img
-            className="d-block w-100"
-            src="holder.js/800x400?text=First slide&bg=373940"
+            className='bannerImg'
+            src="https://aecom.com/sg/wp-content/uploads/2019/03/MMP0043.jpg"
             alt="First slide"
           />
           <Carousel.Caption>
@@ -19,8 +20,8 @@ export default function Home() {
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block w-100"
-            src="holder.js/800x400?text=Second slide&bg=282c34"
+            className='bannerImg'
+            src="https://media.discordapp.net/attachments/989084273522909234/989084437683793960/gayUONhehe.jpg?width=756&height=504"
             alt="Second slide"
           />
 
@@ -31,8 +32,8 @@ export default function Home() {
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block w-100"
-            src="holder.js/800x400?text=Third slide&bg=20232a"
+            className='bannerImg'
+            src="https://media.discordapp.net/attachments/989084273522909234/989084596643721236/students_studying.jpg?width=756&height=504"
             alt="Third slide"
           />
 
@@ -44,7 +45,7 @@ export default function Home() {
       </Carousel>
 
       <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
+        <Card.Img variant="top" src="https://aecom.com/sg/wp-content/uploads/2019/03/MMP0043.jpg" />
         <Card.Body>
           <Card.Title>Card Title</Card.Title>
           <Card.Text>

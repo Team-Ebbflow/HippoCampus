@@ -1,1 +1,16 @@
-﻿
+﻿.bannerImg{
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+#carouselMain {
+    height: 300px;
+    width: 100%;
+    display: block;
+}
+
+.carousel.item {
+    height: 100%;
+}
