@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './NavMenu.css';
 import { Navbar, NavDropdown, Nav, Container } from 'react-bootstrap';
 
-export default function NavMenu() {
+export class NavMenu extends Component {
+  static displayName = NavMenu.name;
+
+  constructor (props) {
+    super(props);
+
+    this.toggleNavbar = this.toggleNavbar.bind(this);
+    this.state = {
+      collapsed: true
+    };
+  }
 
   toggleNavbar () {
     this.setState({
@@ -23,7 +34,7 @@ export default function NavMenu() {
                             <Nav.Link href="#">Freshie Guide</Nav.Link>
                             <Nav.Link href="#">Events</Nav.Link>
                             <Nav.Link href="#">Chapters & Clubs</Nav.Link>
-                            <NavDropdown title="Resources" id="basic-nav-dropdown">
+                            <NavDropdown title="Resourse" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#">Link 1</NavDropdown.Item>
                                 <NavDropdown.Item href="#">Link 2</NavDropdown.Item>
                                 <NavDropdown.Item href="#">Link 3</NavDropdown.Item>
