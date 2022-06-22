@@ -1,19 +1,23 @@
-﻿.navbar {
+﻿@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.navbar {
     background-color: #f4a460;
     font-size: 25px;
     font-family: normal;
-    margin-left: 50%;
+    margin-left: 48%;
+    font-family: Montserrat;
+    font-weight: bold;
 }
 
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
-  margin-left: 55px;
+  margin-left: 25px;
 }
 
 .nav-link {
-    margin-left: 50px;
+    margin-left: 35px;
 }
 
 
