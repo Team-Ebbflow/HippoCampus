@@ -1,0 +1,11 @@
+.footerDiv {
+    display: block;
+    background-color: black;
+    height: 500px;
+    color: #FFFBEE;
+}
+
+.mapComponent {
+    height: 300px;
+    width: 300px;
+}
