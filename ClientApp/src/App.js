@@ -3,7 +3,8 @@ import NavMenu from './components/NavMenu';
 import EventPage from './components/EventPage';
 import Home from './components/Home';
 import Login from './components/Login';
-import Guide from './components/Guide'
+import Guide from './components/Guide';
+import Club from './components/Club';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/event" component={EventPage} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/guide" component={Guide} />
+          <Route exact path="/club" component={Club} />
           <Route component={Home} />
         </Switch>
         </div>
