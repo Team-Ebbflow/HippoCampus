@@ -5,14 +5,15 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Guide from './components/Guide';
 import Club from './components/Club';
+import Footer from './components/Footer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import './custom.css'
+import './custom.css';
 
 function App() {
   return (
-    <div>
+    <div className='footer'>
       <Router>
         <NavMenu />
         <div>
@@ -25,6 +26,7 @@ function App() {
           <Route component={Home} />
         </Switch>
         </div>
+        <Footer />
       </Router>
     </div>
   );
