@@ -6,7 +6,7 @@ export default function NavMenu() {
 
     return (
     <header>
-        <Navbar expand="xl" style={{padding: '1%'}}>
+        <Navbar expand="xl" style={{padding: '0.20%'}}>
               <Container>
                     <Navbar.Brand href="home">
                         <img

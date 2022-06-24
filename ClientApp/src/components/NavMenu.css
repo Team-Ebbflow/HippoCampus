@@ -2,7 +2,7 @@
 
 .navbar {
     background-color: #f4a460;
-    font-size: 25px;
+    font-size: 19px;
     font-family: normal;
     margin-left: 48%;
     font-family: Montserrat;
@@ -17,7 +17,7 @@ a.navbar-brand {
 }
 
 .nav-link {
-    margin-left: 35px;
+    margin-left: 45px;
 }
 
 
