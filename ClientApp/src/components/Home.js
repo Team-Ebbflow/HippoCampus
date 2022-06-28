@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Carousel, Card, Button } from 'react-bootstrap';
-import './style.css'
+import './style.css';
 
 export default function Home() {
 
   return (
-    <div>
+    <div style={{ height: 'auto', display: 'block'}}>
       <Carousel id='carouselMain'>
         <Carousel.Item>
           <img

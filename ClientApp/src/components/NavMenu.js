@@ -19,7 +19,7 @@ export default function NavMenu() {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="ml-auto">
                             <Nav.Link href="home">Home</Nav.Link>
-                            <Nav.Link href="login">Freshie Guide</Nav.Link>
+                            <Nav.Link href="guide">Freshie Guide</Nav.Link>
                             <NavDropdown title="Chapters & Clubs" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#">Link 1</NavDropdown.Item>
                                 <NavDropdown.Item href="#">Link 2</NavDropdown.Item>

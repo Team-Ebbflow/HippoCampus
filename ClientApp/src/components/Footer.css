@@ -1,11 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
 .footerDiv {
-    display: block;
+    display: grid;
     background-color: black;
     height: 500px;
     color: #FFFBEE;
+    grid-template-columns: 25.5% 17% 17% 17% 25.5%;
+    grid-template-rows: auto;
+    overflow: hidden;
 }
 
 .mapComponent {
     height: 300px;
     width: 300px;
+}
+
+.grid-item-a {
+    padding: 50px 0;
+    grid-column-start: 2;
+}
+
+.grid-item-b {
+    padding: 50px 0;
+    grid-column-start: 3;
+}
+
+.grid-item-c {
+    padding: 50px 0;
+    grid-column-start: 4;
+}
+
+h2{
+    color: #ff9d4d;
+    padding: 10px;
+    font-family: Oswald;
+}
+
+h3 {
+    font-size: 20px;
 }
