@@ -6,7 +6,7 @@ export default function NavMenu() {
 
     return (
     <header>
-        <Navbar expand="xl" style={{padding: '1%'}}>
+        <Navbar expand="xl" style={{padding: '0.20%'}}>
               <Container>
                     <Navbar.Brand href="home">
                         <img
@@ -21,7 +21,7 @@ export default function NavMenu() {
                             <Nav.Link href="home">Home</Nav.Link>
                             <Nav.Link href="guide">Freshie Guide</Nav.Link>
                             <NavDropdown title="Chapters & Clubs" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#">Link 1</NavDropdown.Item>
+                                <NavDropdown.Item href="club">Club 1</NavDropdown.Item>
                                 <NavDropdown.Item href="#">Link 2</NavDropdown.Item>
                                 <NavDropdown.Item href="#">Link 3</NavDropdown.Item>
                                 <NavDropdown.Divider />
