@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NavMenu from './components/NavMenu';
 import EventPage from './components/EventPage';
 import Home from './components/Home';
@@ -8,10 +8,15 @@ import Club from './components/Club';
 import Footer from './components/Footer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { unregister } from './registerServiceWorker';
 
 import './custom.css';
 
 function App() {
+
+    useEffect(() => {
+        unregister();
+    });
 
   return (
     <div className='footer'>

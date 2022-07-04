@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Carousel, Card, Button, CardGroup } from 'react-bootstrap';
 import './style.css'
 import Timeline from '@mui/lab/Timeline';
@@ -33,7 +33,7 @@ export default function Home() {
                     </TimelineItem>
                     <TimelineItem>
                         <TimelineOppositeContent color="text.secondary">
-                            10:00 am
+                            10:30am
                         </TimelineOppositeContent>
                         <TimelineSeparator>
                             <TimelineDot color='secondary'/>
