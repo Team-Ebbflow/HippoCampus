@@ -8,6 +8,7 @@
     grid-template-columns: 25.5% 17% 17% 17% 25.5%;
     grid-template-rows: auto;
     overflow: hidden;
+    font-family: Oswald;
 }
 
 .mapComponent {
@@ -32,10 +33,28 @@
 
 h2{
     color: #ff9d4d;
-    padding: 10px;
-    font-family: Oswald;
+    padding: 10px 0;
 }
 
-h3 {
-    font-size: 20px;
+.footerText{
+    font-size: 16px;
+    font-family: Montserrat, sans-serif;
+}
+
+.enquiryField {
+    width: 80%;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+.enquiryTitle{
+    font-size: 14px;
+    margin: 2px;
+}
+
+#submitButton{
+    width: 5vw;
+    height: 5vh;
+    background-color: aquamarine;
+    margin-top: 10px;
 }

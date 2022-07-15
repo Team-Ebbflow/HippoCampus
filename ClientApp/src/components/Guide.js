@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
 import {
   VerticalTimeline,
@@ -11,7 +10,7 @@ import events from "./events.json";
 
 export default function Guide() {
     return (
-        <div style={{ backgroundColor: '#fffbee'}}>
+        <div>
             <VerticalTimeline
             lineColor="#ff9d4d">
                 {events.map(event => (

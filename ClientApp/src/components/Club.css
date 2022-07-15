@@ -1,10 +1,25 @@
 ﻿@import url(https://fonts.googleapis.com/css?family=Economica:400,700);
 
-#circle {
-    width: 400px;
-    height: 400px;
+.circle {
+    width: 100%;
+    padding-top: 100%;
     border-radius: 200px;
     border: 2px solid #fff;
     position: absolute;
-    left: -250px;
+    background-color: #fff;
+}
+
+.clubGrid {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 50% 50%;
+    margin: 50px 25%;
+    height: 500px;
+}
+
+.clubContents {
+    position: relative;
+    margin: 20px;
+    height: 100%;
+    width: 100%;
 }

@@ -22,7 +22,7 @@ function App() {
     <div className='footer'>
       <Router>
         <NavMenu />
-        <div>
+        <body>
         <Switch>
           <Route exact={true} path="/home" component={Home} />
           <Route exact path="/event" component={EventPage} />
@@ -31,7 +31,7 @@ function App() {
           <Route exact path="/club" component={Club} />
           <Route component={Home} />
         </Switch>
-        </div>
+        </body>
         <Footer />
       </Router>
     </div>

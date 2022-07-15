@@ -5,6 +5,10 @@
     object-fit: cover;
 }
 
+body {
+    background-color: #fffbee !important;
+}
+
 #carouselMain {
     width: auto;
     display: block;
@@ -20,18 +24,67 @@
     margin-bottom: 50px;
 }
 
-.homeCardImage {
-    height: 250px;
-    object-fit: cover;
-    image-rendering: pixelated;
-}
-
-.homeCard {
-    width: 20%;
-}
-
 #homeCarouselGrid {
     display: grid;
     grid-template-columns: 25% 75%;
     padding: 1%;
+}
+
+.homeCardImage {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+    filter: brightness(50%);
+    -webkit-filter: brightness(50%);
+    border-radius: 15px;
+}
+
+.homeCardGroup {
+    margin: 50px 15% 100px;
+    display: grid;
+    height: 300px;
+    grid-template-columns: 40% 30% 30%;
+}
+
+.homeCard {
+    height: 100%;
+    margin: 0 5%;
+    position: relative;
+}
+
+.homeCardContent{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 2vw;
+}
+
+.homeCardTitle{
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: bisque;
+    font-family: Montserrat, sans-serif;
+}
+
+.homeCardParagraph{
+    font-size: 26px;
+    letter-spacing: 2px;
+    line-height: 1.5em;
+    color: white;
+    font-family: montserrat, sans-serif;
+}
+
+.homeCardButton{
+    position: absolute;
+    background-color: white;
+    font-size: 16px;
+    padding: 10px 25px;
+    border: 0;
+    border-radius: 5px;
+    bottom: 0;
+    font-family: montserrat, sans-serif;
 }

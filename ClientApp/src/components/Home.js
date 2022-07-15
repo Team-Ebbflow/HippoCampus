@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel, Card, Button, CardGroup } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 import './style.css'
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
@@ -102,40 +102,34 @@ export default function Home() {
                 </Carousel>
             </div>
 
-            <CardGroup style={{ padding: '2% 8%' }}>
-                <Card style={{ marginLeft: '3%' }}>
-                    <Card.Img className='homeCardImage' variant="top" src="https://cdn.discordapp.com/attachments/989084273522909234/989084596643721236/students_studying.jpg" />
-                    <Card.Body>
-                        <Card.Title>Student</Card.Title>
-                        <Card.Text>
-                            Join our Diverse Student Communities
-                        </Card.Text>
-                        <Button variant="primary" href="#">Explore</Button>
-                    </Card.Body>
-                </Card>
+            <div className='homeCardGroup'>
+                <div className='homeCard'>
+                    <img className='homeCardImage' src="https://cdn.discordapp.com/attachments/989084273522909234/989084596643721236/students_studying.jpg" alt='studentImage' />
+                    <div className='homeCardContent'>
+                        <p className='homeCardTitle'>Student</p>
+                        <p className='homeCardParagraph'>Student <br/>Die</p>
+                        <button className='homeCardButton'>Explore</button>
+                    </div>
+                </div>
 
-                <Card style={{ marginLeft: '1%' }}>
-                    <Card.Img className='homeCardImage' variant="top" src="https://cdn.discordapp.com/attachments/989084273522909234/989834914943893525/Engineers_Australia_Student_Society.jpg" />
-                    <Card.Body>
-                        <Card.Title>Chapters</Card.Title>
-                        <Card.Text>
-                            Student Chapters & Clubs
-                        </Card.Text>
-                        <Button variant="primary" href="#">Explore</Button>
-                    </Card.Body>
-                </Card>
+                <div className='homeCard'>
+                    <img className='homeCardImage' src="https://cdn.discordapp.com/attachments/989084273522909234/989834914943893525/Engineers_Australia_Student_Society.jpg" alt='studentImage' />
+                    <div className='homeCardContent'>
+                        <p className='homeCardTitle'>Student</p>
+                        <p className='homeCardParagraph'>Student <br/>Die</p>
+                        <button className='homeCardButton'>Explore</button>
+                    </div>
+                </div>
 
-                <Card style={{ marginLeft: '1%', marginRight: '3%' }}>
-                    <Card.Img className='homeCardImage' variant="top" src="https://aecom.com/sg/wp-content/uploads/2019/03/MMP0043.jpg" />
-                    <Card.Body>
-                        <Card.Title>Alumi Events</Card.Title>
-                        <Card.Text>
-                            Movie Nights and more!
-                        </Card.Text>
-                        <Button variant="primary" href="#">Explore</Button>
-                    </Card.Body>
-                </Card>
-            </CardGroup>
+                <div className='homeCard'>
+                    <img className='homeCardImage' src="https://aecom.com/sg/wp-content/uploads/2019/03/MMP0043.jpg" alt='studentImage' />
+                    <div className='homeCardContent'>
+                        <p className='homeCardTitle'>Student</p>
+                        <p className='homeCardParagraph'>Student <br/>Die</p>
+                        <button className='homeCardButton'>Explore</button>
+                    </div>
+                </div>
+            </div>
 
         </div>
     );
