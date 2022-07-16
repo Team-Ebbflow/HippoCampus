@@ -38,6 +38,7 @@ body {
     filter: brightness(50%);
     -webkit-filter: brightness(50%);
     border-radius: 15px;
+    transition: 0.3s;
 }
 
 .homeCardGroup {
@@ -87,4 +88,52 @@ body {
     border-radius: 5px;
     bottom: 0;
     font-family: montserrat, sans-serif;
+    transition: 0.3s;
+}
+
+.homeCardButton:hover {
+    font-size: 18px;
+}
+
+.circle {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+}
+
+.clubGrid {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    margin: 20px 15% 50px;
+    height: 20vw;
+}
+
+.clubContents {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 30px;
+}
+
+.circleImage {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+    position: absolute;
+    top: 0;
+    border-radius: 1000px;
+    border-style: solid;
+    border-width: 15px;
+    border-color: #ced8ff;
+    transition: 0.3s;
+}
+
+.circleImage:hover {
+    border-width: 0px;
+}
+
+h1 {
+    font-family: montserrat, sans-serif;
+    margin-left: 15%;
 }

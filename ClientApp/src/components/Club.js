@@ -4,13 +4,9 @@ import './Club.css';
 export default function Club() {
     return (
         <div>
-            <h1>FACULTY</h1>
-            <div className='clubGrid'>
-                <div className='clubContents'>
-                    <div className='circle'>
+            <h1>Clubs</h1>
+            <div className='clubLine'>
 
-                    </div>
-                </div> 
             </div>
         </div>
     );
