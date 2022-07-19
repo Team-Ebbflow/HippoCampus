@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import './style.css'
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
@@ -25,6 +26,9 @@ const galleryImages = [
 ];
 
 export default function Home() {
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }, []);
 
     return (
         <div>
@@ -146,5 +150,6 @@ export default function Home() {
                 </div> 
             </div>
         </div>
+
     );
 }

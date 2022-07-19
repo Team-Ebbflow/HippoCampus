@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './NavMenu.css';
 import { Navbar, NavDropdown, Nav, Container } from 'react-bootstrap';
 
 export default function NavMenu() {
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }, []);
 
     return (
     <header>
@@ -31,6 +35,26 @@ export default function NavMenu() {
                     </Navbar.Collapse>
               </Container>
         </Navbar>
+
+        <div>
+            <button
+                onClick={() => {
+                    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                }}
+                style={{
+                    position: 'fixed',
+                    padding: '1rem 2rem',
+                    fontSize: '20px',
+                    bottom: '40px',
+                    right: '40px',
+                    backgroundColor: '#f4a460',
+                    color: '#fff',
+                    textAlign: 'center',
+                }}
+            >
+                Scroll to Top
+            </button>
+        </div>
     </header>
   );
 }
