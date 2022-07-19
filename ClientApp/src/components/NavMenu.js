@@ -20,12 +20,7 @@ export default function NavMenu() {
                         <Nav className="ml-auto">
                             <Nav.Link href="home">Home</Nav.Link>
                             <Nav.Link href="guide">Freshie Guide</Nav.Link>
-                            <NavDropdown title="Chapters & Clubs" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="club">Club 1</NavDropdown.Item>
-                                <NavDropdown.Item href="#">Link 2</NavDropdown.Item>
-                                <NavDropdown.Item href="#">Link 3</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                            </NavDropdown>
+                            <Nav.Link href="club">Chapters & Clubs</Nav.Link>
                             <NavDropdown title="Resource" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#">Link 1</NavDropdown.Item>
                                 <NavDropdown.Item href="#">Link 2</NavDropdown.Item>

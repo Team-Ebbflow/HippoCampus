@@ -1,15 +1,13 @@
 ﻿@import url(https://fonts.googleapis.com/css?family=Economica:400,700);
 
 .clubLine {
-    height: 300px;
-    margin: 20px 10%;
+    height: 600px;
+    margin: 50px 10%;
 }
 
 .clubLine #one {
-    margin: 10px;
-    padding: 20px;
     font-size: 30px;
-    flex: 1;
+    flex: 2;
 }
 
 .clubLine h2 {
@@ -18,10 +16,8 @@
 }
 
 .clubLine #two {
-    margin: 10px;
-    padding: 20px;
     font-size: 30px;
-    flex: 2;
+    flex: 3;
 }
 
 .clubLine .clubIcon {
@@ -32,4 +28,31 @@
 
 .clubLine .clubFlex {
     display: flex;
+    margin: 50px 0;
+}
+
+.clubLine .image {
+    height: 50px;
+    margin: 5px;
+    object-fit: cover;
+    transition: 0.3s;
+}
+
+.clubLine .image:hover {
+    height: 60px;
+}
+
+.clubGallery {
+    display: flex;
+    height: 250px;
+}
+
+.clubGallery .clubGalleryItem {
+    flex: 1;
+}
+
+.clubGallery .clubGalleryItem .clubImage {
+    height: 250px;
+    box-shadow: 3px 5px #888888;
+    object-fit: cover;
 }

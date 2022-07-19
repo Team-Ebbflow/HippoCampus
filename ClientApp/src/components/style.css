@@ -1,4 +1,5 @@
-﻿.bannerImg{
+﻿@import "~react-image-gallery/styles/css/image-gallery.css";
+.bannerImg{
     width: 100%;
     height: 350px;
     overflow: hidden;
@@ -136,4 +137,19 @@ body {
 h1 {
     font-family: montserrat, sans-serif;
     margin-left: 15%;
+}
+
+.timeLine {
+    background-color: #ced8ff;
+    margin: 0 40px 0 20px;
+    border-radius: 10px;
+}
+
+.guideSplitLine {
+    height: 4px;
+    width: 90%;
+    color: #ff9d4d;
+    background-color: #ff9d4d;
+    margin: 0 auto;
+    border: 0;
 }

@@ -15,10 +15,11 @@ import './custom.css';
 function App() {
 
     useEffect(() => {
-        let isRedirected = sessionStorage.getItem('isRedirected'); 
-        if (!isRedirected)
+        unregister();
+        let isRedirected1 = sessionStorage.getItem('isRedirected1'); 
+        if (!isRedirected1)
         { 
-          sessionStorage.setItem('isRedirected', true);
+          sessionStorage.setItem('isRedirected1', true);
           window.location.reload(true); 
         }
     });

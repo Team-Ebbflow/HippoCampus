@@ -2,10 +2,10 @@
 
 .navbar {
     background-color: #f4a460;
-    font-size: 19px;
+    font-size: 1.2vw;
     font-family: normal;
     margin-left: 48%;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-weight: bold;
     z-index: 1;
 }
