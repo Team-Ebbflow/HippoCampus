@@ -4,7 +4,7 @@
     background-color: #f4a460;
     font-size: 1.2vw;
     font-family: normal;
-    margin-left: 48%;
+    margin-left: 49.9%;
     font-family: Montserrat, sans-serif;
     font-weight: bold;
     z-index: 1;
@@ -35,4 +35,6 @@ html {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
-
+.navbar-nav {
+  margin-left: 5% !important;
+}

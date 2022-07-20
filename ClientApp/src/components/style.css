@@ -147,9 +147,61 @@ h1 {
 
 .guideSplitLine {
     height: 4px;
-    width: 90%;
+    width: 80%;
+    border-radius: 10px;
     color: #ff9d4d;
     background-color: #ff9d4d;
     margin: 0 auto;
     border: 0;
+}
+
+.circleImageGuide {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+    position: absolute;
+    top: 0;
+    border-radius: 1000px;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.guideGrid {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    margin: 20px 15% 50px;
+    height: 15vw;
+}
+
+.guideCover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    background-color: #ced8ff;
+    border-radius: 1000px;
+}
+
+.guideText {
+    text-align: center;
+    position: absolute;
+    opacity: 0;
+    transition: 0.3s;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    color: black;
+    font-size: 36px;
+}
+
+.circle:hover .guideText {
+    opacity: 1;
+}
+
+.circle:hover .circleImageGuide {
+    opacity: 0.3;
 }

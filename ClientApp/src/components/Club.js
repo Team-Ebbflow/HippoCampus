@@ -22,7 +22,7 @@ export default function Club() {
     return (
         <div>
             <h1 style={{ marginLeft: '10%', marginTop: 50 }}>Clubs</h1>
-            <div className='clubLine'>
+            <div className='clubLine' id='club1'>
                 <div className='clubFlex'>
                     <div id='one'>
                         <h2>Engineers Australia</h2>

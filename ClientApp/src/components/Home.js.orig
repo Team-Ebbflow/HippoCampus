@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
+=======
+import { Carousel } from 'react-bootstrap';
 import { useEffect } from 'react';
+>>>>>>> b55c4d733b943b5e3531ccae3cbb0bf54e48425b
 import './style.css'
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
@@ -126,11 +130,9 @@ export default function Home() {
             <h1>Clubs</h1>
             <div className='clubGrid'>
                 <div className='clubContents'>
-                    <a href='club/#club1'>
                     <div className='circle'>
                         <img className='circleImage' src='https://media.discordapp.net/attachments/933556870302547993/997840043123150858/unknown.png?width=484&height=484'/>
                     </div>
-                    </a>
                 </div> 
 
                 <div className='clubContents'>

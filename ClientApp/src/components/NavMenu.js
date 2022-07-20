@@ -21,16 +21,10 @@ export default function NavMenu() {
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="ml-auto">
+                        <Nav>
                             <Nav.Link href="home">Home</Nav.Link>
                             <Nav.Link href="guide">Freshie Guide</Nav.Link>
                             <Nav.Link href="club">Chapters & Clubs</Nav.Link>
-                            <NavDropdown title="Resource" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#">Link 1</NavDropdown.Item>
-                                <NavDropdown.Item href="#">Link 2</NavDropdown.Item>
-                                <NavDropdown.Item href="#">Link 3</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                            </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>
               </Container>

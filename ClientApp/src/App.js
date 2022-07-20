@@ -16,10 +16,10 @@ function App() {
 
     useEffect(() => {
         unregister();
-        let isRedirected1 = sessionStorage.getItem('isRedirected1'); 
-        if (!isRedirected1)
+        let isRedirected = sessionStorage.getItem('isRedirected2'); 
+        if (!isRedirected)
         { 
-          sessionStorage.setItem('isRedirected1', true);
+          sessionStorage.setItem('isRedirected2', true);
           window.location.reload(true); 
         }
     });
