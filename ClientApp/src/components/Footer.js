@@ -13,6 +13,10 @@ function Map() {
     )
 }
 
+function Login() {
+    window.location.href = "/login";
+}
+
 const WrappedMap = withScriptjs(withGoogleMap(Map));
 
 export default function Footer() {
@@ -25,6 +29,9 @@ export default function Footer() {
                     National Library Building<br />
                     Singapore 188064 <br />
                     <a href='tel:+65-6221-3306'>+65 6221 3306</a></p>
+                <img src="https://uploads-ssl.webflow.com/620e233602defed01f7d3d30/6249b1983ce781d1831f7d2c_uon-logo-square.png" width="75" alt="" className="image-3"></img>
+                <br/>
+                <button id='adminButton' onClick={Login}>Admin Login</button>
             </div>
             <div className='grid-item-b'>
                 <h2>Enquiry</h2>

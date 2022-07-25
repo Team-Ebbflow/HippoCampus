@@ -17,11 +17,13 @@
 }
 
 .grid-item-a {
+    position: relative;
     padding: 50px 0;
     grid-column-start: 2;
 }
 
 .grid-item-b {
+    position: relative;
     padding: 50px 0;
     grid-column-start: 3;
 }
@@ -56,5 +58,20 @@ h2{
     width: 5vw;
     height: 5vh;
     background-color: #ff9d4d;
-    margin-top: 10px;
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+}
+
+#adminButton{
+    position: absolute;
+    bottom: 15%;
+    width: 6vw;
+    height: 5vh;
+    background-color: #ff9d4d;
+    left: 0;
+}
+
+.image-3 {
+    display: block;
 }

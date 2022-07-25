@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Guide from './components/Guide';
 import Club from './components/Club';
 import Footer from './components/Footer';
+import Management from './components/Management';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { unregister } from './registerServiceWorker';
@@ -35,6 +36,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/guide" component={Guide} />
           <Route exact path="/club" component={Club} />
+          <Route exact path="/management" component={Management} />
           <Route component={Home} />
         </Switch>
         </body>
