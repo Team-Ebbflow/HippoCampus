@@ -266,9 +266,17 @@ h1 {
     font-family: Montserrat, sans-serif;
     letter-spacing: 1.5px;
     font-size: 18px;
+    font-weight: 600;
 }
 
 .goToTop {
-    width: 50px !important;
-    height: 50px !important;
+    width: 60px !important;
+    height: 60px !important;
+    z-index: 100 !important;
+}
+
+.timelineTitle {
+    margin: 0 0 15px 20px;
+    padding: 0;
+    font-family: Oswald;
 }

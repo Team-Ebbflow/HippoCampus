@@ -40,75 +40,78 @@ export default function Home() {
             </div>
 
             <div id='homeCarouselGrid'>
-                <div className='timeLine'>
-                    <Timeline position="alternate">
-                        <TimelineItem>
-                            <TimelineOppositeContent color="text.secondary">
-                                <div className='timelineText'>
-                                    09:30 am
-                                </div>
-                            </TimelineOppositeContent>
-                            <TimelineSeparator>
-                                <TimelineDot color='success' />
-                                <TimelineConnector />
-                            </TimelineSeparator>
-                            <TimelineContent>
-                                <div className='timelineText'>
-                                    Eat
-                                </div>
-                            </TimelineContent>
-                        </TimelineItem>
-                        <TimelineItem>
-                            <TimelineOppositeContent color="text.secondary">
-                                <div className='timelineText'>
-                                    10:30am
-                                </div>
-                            </TimelineOppositeContent>
-                            <TimelineSeparator>
-                                <TimelineDot color='secondary' />
-                                <TimelineConnector />
-                            </TimelineSeparator>
-                            <TimelineContent>
-                                <div className='timelineText'>
-                                    Code
-                                </div>
-                            </TimelineContent>
-                        </TimelineItem>
-                        <TimelineItem>
-                            <TimelineOppositeContent color="text.secondary">
-                                <div className='timelineText'>
-                                    12:00 am
-                                </div>
-                            </TimelineOppositeContent>
-                            <TimelineSeparator>
-                                <TimelineDot color='primary' />
-                                <TimelineConnector />
-                            </TimelineSeparator>
-                            <TimelineContent>
-                                <div className='timelineText'>
-                                    Sleep
-                                </div>
-                            </TimelineContent>
-                        </TimelineItem>
-                        <TimelineItem>
-                            <TimelineOppositeContent color="text.secondary">
-                                <div className='timelineText'>
-                                    9:00 am
-                                </div>
-                            </TimelineOppositeContent>
-                            <TimelineSeparator>
-                                <TimelineDot color='warning' />
-                                <TimelineConnector />
-                            </TimelineSeparator>
-                            <TimelineContent>
-                                <div className='timelineText'>
-                                    Repeat
-                                </div>
-                            </TimelineContent>
-                        </TimelineItem>
-                    </Timeline>
-                </div>
+                <div>
+                    <h2 className='timelineTitle'>Upcoming Events</h2>
+                    <div className='timeLine'>
+                        <Timeline position="alternate">
+                            <TimelineItem>
+                                <TimelineOppositeContent color="text.secondary">
+                                    <div className='timelineText'>
+                                        09:30 am
+                                    </div>
+                                </TimelineOppositeContent>
+                                <TimelineSeparator>
+                                    <TimelineDot color='success' />
+                                    <TimelineConnector />
+                                </TimelineSeparator>
+                                <TimelineContent>
+                                    <div className='timelineText'>
+                                        Eat
+                                    </div>
+                                </TimelineContent>
+                            </TimelineItem>
+                            <TimelineItem>
+                                <TimelineOppositeContent color="text.secondary">
+                                    <div className='timelineText'>
+                                        10:30am
+                                    </div>
+                                </TimelineOppositeContent>
+                                <TimelineSeparator>
+                                    <TimelineDot color='secondary' />
+                                    <TimelineConnector />
+                                </TimelineSeparator>
+                                <TimelineContent>
+                                    <div className='timelineText'>
+                                        Code
+                                    </div>
+                                </TimelineContent>
+                            </TimelineItem>
+                            <TimelineItem>
+                                <TimelineOppositeContent color="text.secondary">
+                                    <div className='timelineText'>
+                                        12:00 am
+                                    </div>
+                                </TimelineOppositeContent>
+                                <TimelineSeparator>
+                                    <TimelineDot color='primary' />
+                                    <TimelineConnector />
+                                </TimelineSeparator>
+                                <TimelineContent>
+                                    <div className='timelineText'>
+                                        Sleep
+                                    </div>
+                                </TimelineContent>
+                            </TimelineItem>
+                            <TimelineItem>
+                                <TimelineOppositeContent color="text.secondary">
+                                    <div className='timelineText'>
+                                        9:00 am
+                                    </div>
+                                </TimelineOppositeContent>
+                                <TimelineSeparator>
+                                    <TimelineDot color='warning' />
+                                    <TimelineConnector />
+                                </TimelineSeparator>
+                                <TimelineContent>
+                                    <div className='timelineText'>
+                                        Repeat
+                                    </div>
+                                </TimelineContent>
+                            </TimelineItem>
+                        </Timeline>
+                    </div>
 
+                </div>
                 <ImageGallery
                     items={galleryImages}
                     autoPlay={true}
