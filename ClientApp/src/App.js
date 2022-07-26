@@ -10,6 +10,7 @@ import Management from './components/Management';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { unregister } from './registerServiceWorker';
+import ScrollToTop from "react-scroll-to-top";
 
 import './custom.css';
 
@@ -26,6 +27,7 @@ function App() {
 
   return (
     <div className='footer'>
+      <ScrollToTop smooth color="#6f00ff" className='goToTop'/>
       <Router>
         <NavMenu />
         <body>

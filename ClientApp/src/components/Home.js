@@ -148,6 +148,33 @@ export default function Home() {
                 </div>
             </div>
 
+            <div className='homeVideoSection'>
+                <div className='testimonyVid'>
+                    <h2 className='testimony'>Testimonies from students!</h2>
+                    <ReactPlayer
+                        url='https://www.youtube.com/watch?v=a1x3q_ZSUpQ'
+                        controls='true'
+                         />
+                </div>
+
+                <div className='testimonyStickerBoard'>
+                    <div className='testimonySticker'>
+                        <img className='portrait' alt='portrait' src='https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Patrick_Star.svg/1200px-Patrick_Star.svg.png' />
+                    </div>
+                    <div className='testimonySticker'>
+                        <p className='testimonyText'>XD</p>
+                        <img className='sticker' alt='sticker' src='https://sea3381808.blob.core.windows.net/images/sticker1.png' />
+                    </div>
+                    <div className='testimonySticker'>
+                        <p className='testimonyText'>XD</p>
+                        <img className='sticker' alt='sticker' src='https://sea3381808.blob.core.windows.net/images/sticker1.png' />
+                    </div>
+                    <div className='testimonySticker'>
+                        <img className='portrait' alt='portrait' src='https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Patrick_Star.svg/1200px-Patrick_Star.svg.png' />
+                    </div>
+                </div>
+            </div>
+
             <h1>Clubs</h1>
             <div className='clubGrid'>
                 <div className='clubContents'>
@@ -177,32 +204,6 @@ export default function Home() {
                 </div> 
             </div>
 
-            <div className='homeVideoSection'>
-                <div className='testimonyVid'>
-                    <h2 className='testimony'>Testimonies from students!</h2>
-                    <ReactPlayer
-                        url='https://www.youtube.com/watch?v=a1x3q_ZSUpQ'
-                        controls='true'
-                         />
-                </div>
-
-                <div className='testimonyStickerBoard'>
-                    <div className='testimonySticker'>
-                        <img className='portrait' alt='portrait' src='https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Patrick_Star.svg/1200px-Patrick_Star.svg.png' />
-                    </div>
-                    <div className='testimonySticker'>
-                        <p className='testimonyText'>XD</p>
-                        <img className='sticker' alt='sticker' src='https://sea3381808.blob.core.windows.net/images/sticker1.png' />
-                    </div>
-                    <div className='testimonySticker'>
-                        <p className='testimonyText'>XD</p>
-                        <img className='sticker' alt='sticker' src='https://sea3381808.blob.core.windows.net/images/sticker1.png' />
-                    </div>
-                    <div className='testimonySticker'>
-                        <img className='portrait' alt='portrait' src='https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Patrick_Star.svg/1200px-Patrick_Star.svg.png' />
-                    </div>
-                </div>
-            </div>
         </div>
 
     );
