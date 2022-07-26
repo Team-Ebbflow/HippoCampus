@@ -44,43 +44,67 @@ export default function Home() {
                     <Timeline position="alternate">
                         <TimelineItem>
                             <TimelineOppositeContent color="text.secondary">
-                                09:30 am
+                                <div className='timelineText'>
+                                    09:30 am
+                                </div>
                             </TimelineOppositeContent>
                             <TimelineSeparator>
                                 <TimelineDot color='success' />
                                 <TimelineConnector />
                             </TimelineSeparator>
-                            <TimelineContent>Eat</TimelineContent>
+                            <TimelineContent>
+                                <div className='timelineText'>
+                                    Eat
+                                </div>
+                            </TimelineContent>
                         </TimelineItem>
                         <TimelineItem>
                             <TimelineOppositeContent color="text.secondary">
-                                10:30am
+                                <div className='timelineText'>
+                                    10:30am
+                                </div>
                             </TimelineOppositeContent>
                             <TimelineSeparator>
                                 <TimelineDot color='secondary' />
                                 <TimelineConnector />
                             </TimelineSeparator>
-                            <TimelineContent>Code</TimelineContent>
+                            <TimelineContent>
+                                <div className='timelineText'>
+                                    Code
+                                </div>
+                            </TimelineContent>
                         </TimelineItem>
                         <TimelineItem>
                             <TimelineOppositeContent color="text.secondary">
-                                12:00 am
+                                <div className='timelineText'>
+                                    12:00 am
+                                </div>
                             </TimelineOppositeContent>
                             <TimelineSeparator>
                                 <TimelineDot color='primary' />
                                 <TimelineConnector />
                             </TimelineSeparator>
-                            <TimelineContent>Sleep</TimelineContent>
+                            <TimelineContent>
+                                <div className='timelineText'>
+                                    Sleep
+                                </div>
+                            </TimelineContent>
                         </TimelineItem>
                         <TimelineItem>
                             <TimelineOppositeContent color="text.secondary">
-                                9:00 am
+                                <div className='timelineText'>
+                                    9:00 am
+                                </div>
                             </TimelineOppositeContent>
                             <TimelineSeparator>
                                 <TimelineDot color='warning' />
                                 <TimelineConnector />
                             </TimelineSeparator>
-                            <TimelineContent>Repeat</TimelineContent>
+                            <TimelineContent>
+                                <div className='timelineText'>
+                                    Repeat
+                                </div>
+                            </TimelineContent>
                         </TimelineItem>
                     </Timeline>
                 </div>
@@ -157,7 +181,7 @@ export default function Home() {
                 <div className='testimonyVid'>
                     <h2 className='testimony'>Testimonies from students!</h2>
                     <ReactPlayer
-                        url='https://sea3381808.blob.core.windows.net/videos/uonpropoganda.mp4'
+                        url='https://www.youtube.com/watch?v=a1x3q_ZSUpQ'
                         controls='true'
                          />
                 </div>

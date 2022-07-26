@@ -15,30 +15,29 @@ import './custom.css';
 
 function App() {
 
-    useEffect(() => {
-        unregister();
-        let isRedirected = sessionStorage.getItem('isRedirected2'); 
-        if (!isRedirected)
-        { 
-          sessionStorage.setItem('isRedirected2', true);
-          window.location.reload(true); 
-        }
-    });
+  useEffect(() => {
+    unregister();
+    let isRedirected = sessionStorage.getItem('isRedirected3');
+    if (!isRedirected) {
+      sessionStorage.setItem('isRedirected3', true);
+      window.location.reload(true);
+    }
+  });
 
   return (
     <div className='footer'>
       <Router>
         <NavMenu />
         <body>
-        <Switch>
-          <Route exact={true} path="/home" component={Home} />
-          <Route exact path="/event" component={EventPage} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/guide" component={Guide} />
-          <Route exact path="/club" component={Club} />
-          <Route exact path="/management" component={Management} />
-          <Route component={Home} />
-        </Switch>
+          <Switch>
+            <Route exact={true} path="/home" component={Home} />
+            <Route exact path="/event" component={EventPage} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/guide" component={Guide} />
+            <Route exact path="/club" component={Club} />
+            <Route exact path="/management" component={Management} />
+            <Route component={Home} />
+          </Switch>
         </body>
         <Footer />
       </Router>

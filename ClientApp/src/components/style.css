@@ -143,6 +143,7 @@ h1 {
 .timeLine {
     background-color: #ced8ff;
     margin: 0 40px 0 20px;
+    padding-top: 20px;
     border-radius: 10px;
 }
 
@@ -258,4 +259,10 @@ h1 {
     left: 0;
     right: 0;
     margin: 30px auto auto auto;
+}
+
+.timelineText {
+    font-family: Montserrat, sans-serif;
+    letter-spacing: 1.5px;
+    font-size: 18px;
 }
