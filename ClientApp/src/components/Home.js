@@ -9,6 +9,7 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import ImageGallery from 'react-image-gallery';
+import ReactPlayer from 'react-player'
 
 const galleryImages = [
   {
@@ -150,6 +151,33 @@ export default function Home() {
                         <img className='circleImage' src='https://media.discordapp.net/attachments/830006727838924801/997837436895903814/unknown.png?width=490&height=484'/>
                     </div>
                 </div> 
+            </div>
+
+            <div className='homeVideoSection'>
+                <div className='testimonyVid'>
+                    <h2 className='testimony'>Testimonies from students!</h2>
+                    <ReactPlayer
+                        url='https://sea3381808.blob.core.windows.net/videos/uonpropoganda.mp4'
+                        controls='true'
+                         />
+                </div>
+
+                <div className='testimonyStickerBoard'>
+                    <div className='testimonySticker'>
+                        <img className='portrait' alt='portrait' src='https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Patrick_Star.svg/1200px-Patrick_Star.svg.png' />
+                    </div>
+                    <div className='testimonySticker'>
+                        <p className='testimonyText'>XD</p>
+                        <img className='sticker' alt='sticker' src='https://sea3381808.blob.core.windows.net/images/sticker1.png' />
+                    </div>
+                    <div className='testimonySticker'>
+                        <p className='testimonyText'>XD</p>
+                        <img className='sticker' alt='sticker' src='https://sea3381808.blob.core.windows.net/images/sticker1.png' />
+                    </div>
+                    <div className='testimonySticker'>
+                        <img className='portrait' alt='portrait' src='https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Patrick_Star.svg/1200px-Patrick_Star.svg.png' />
+                    </div>
+                </div>
             </div>
         </div>
 
