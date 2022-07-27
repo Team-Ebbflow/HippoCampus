@@ -224,7 +224,6 @@ h1 {
 .testimonyStickerBoard {
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
     width: 100%;
     margin: 50px;
 }
@@ -232,19 +231,23 @@ h1 {
 .testimonySticker {
     padding: 20px;
     font-size: 30px;
+    margin: 0 20px;
     text-align: center;
     position: relative;
 }
 
+.testimonyVid {
+    width: 100%;
+}
+
 .sticker {
-    height: 20vh;
-    width: 12vw;
+    height: 100%;
+    width: 100%;
     position: absolute;
     top: 0;
     bottom: 0;                        
     left: 0;
     right: 0;
-    margin: auto;
 }
 
 .portrait {
@@ -279,4 +282,22 @@ h1 {
     margin: 0 0 15px 20px;
     padding: 0;
     font-family: Oswald;
+}
+
+.mask1 {
+    -webkit-mask-image: url(https://upload.wikimedia.org/wikipedia/commons/8/8e/Pan_Blue_Circle.png);
+    mask-image: url(https://upload.wikimedia.org/wikipedia/commons/8/8e/Pan_Blue_Circle.png);
+    -webkit-mask-size: 200px;
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    position: absolute;
+    z-index: 10;
+    bottom: -20%;
+    left: 50%;
+}
+
+.portraitImage {
+    height: 200px;
+    object-fit: cover;
 }

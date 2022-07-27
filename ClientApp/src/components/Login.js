@@ -4,11 +4,13 @@ export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const [result, setResult] = useState("");
+
     function handleLogin() {
-        console.log('api/administrators/email=' + username + '&password=' + password);
         fetch('api/administrators/email=' + username + '&password=' + password)
             .then(response => response.json())
-            .then(data => console.log(data));
+            .then(data => setResult(data))
+            .then(console.log(result));
     }
 
     return (

@@ -1,13 +1,26 @@
-﻿import React, { useState, Fragment } from "react";
+﻿import React, { useState, Fragment, useEffect, useCallback } from "react";
 import { nanoid } from "nanoid";
 import "./Management.css";
-import data from "./Management.json";
+import "./Management.json";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 
 export default function Management() {
+    
+    const [contacts, setContacts] = useState(null);
+    const [isLoading, setLoading] = useState(true);
 
-    const [contacts, setContacts] = useState(data);
+    useEffect(() => {
+        getAdministrators();
+    }, []);
+
+    const getAdministrators = async () => {
+        const response = await fetch('api/administrators');
+        const data = await response.json();
+        setContacts(data);
+        setLoading(false);
+    };
+
     const [addFormData, setAddFormData] = useState({
         fullName: "",
         address: "",
@@ -112,7 +125,13 @@ export default function Management() {
         setContacts(newContacts);
     };
 
-
+    if (isLoading) {
+        return (
+            <div>
+                <h1> Loading Data... </h1>
+            </div>
+        )
+    }
     return (
         <div className="app-container">
             <form onSubmit={handleEditFormSubmit}>

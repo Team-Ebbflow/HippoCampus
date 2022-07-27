@@ -157,23 +157,25 @@ export default function Home() {
                     <ReactPlayer
                         url='https://www.youtube.com/watch?v=a1x3q_ZSUpQ'
                         controls='true'
+                        width={'100%'}
                          />
                 </div>
 
                 <div className='testimonyStickerBoard'>
-                    <div className='testimonySticker'>
-                        <img className='portrait' alt='portrait' src='https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Patrick_Star.svg/1200px-Patrick_Star.svg.png' />
-                    </div>
-                    <div className='testimonySticker'>
+                    <div className='testimonySticker' style={{marginLeft:30}}>
                         <p className='testimonyText'>XD</p>
-                        <img className='sticker' alt='sticker' src='https://sea3381808.blob.core.windows.net/images/sticker1.png' />
+                        <img className='sticker' alt='sticker' src='https://sea3381808.blob.core.windows.net/images/stickerlight.png' />
+                        <div className='mask1'>
+                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Patrick_Star.svg/1200px-Patrick_Star.svg.png" alt="portrait" className='portraitImage'></img>
+                        </div>
                     </div>
-                    <div className='testimonySticker'>
+
+                    <div className='testimonySticker' style={{marginLeft:30}}>
                         <p className='testimonyText'>XD</p>
-                        <img className='sticker' alt='sticker' src='https://sea3381808.blob.core.windows.net/images/sticker1.png' />
-                    </div>
-                    <div className='testimonySticker'>
-                        <img className='portrait' alt='portrait' src='https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Patrick_Star.svg/1200px-Patrick_Star.svg.png' />
+                        <img className='sticker' alt='sticker' src='https://sea3381808.blob.core.windows.net/images/stickerdarker.png' />
+                        <div className='mask1'>
+                            <img src="https://pyxis.nymag.com/v1/imgs/7aa/21a/c1de2c521f1519c6933fcf0d08e0a26fef-27-spongebob-squarepants.rsquare.w700.jpg" alt="portrait" className='portraitImage'></img>
+                        </div>
                     </div>
                 </div>
             </div>
