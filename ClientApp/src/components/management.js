@@ -1,9 +1,10 @@
-﻿import React, { useState, Fragment, useEffect, useCallback } from "react";
+﻿import React, { useState, Fragment, useEffect } from "react";
 import { nanoid } from "nanoid";
 import "./Management.css";
 import "./Management.json";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
+import Dropdown from 'react-bootstrap/Dropdown';
 
 export default function Management() {
     
@@ -11,7 +12,7 @@ export default function Management() {
     const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
-        getAdministrators();
+        getLoginStatus();
     }, []);
 
     const getAdministrators = async () => {
@@ -19,6 +20,17 @@ export default function Management() {
         const data = await response.json();
         setContacts(data);
         setLoading(false);
+    };
+
+    const getLoginStatus = async () => {
+        const response = await fetch('api/administrators/login_status');
+        const data = await response.json();
+        if (data.toString() != 'true')
+        {
+            window.location.href = 'login';
+            return;
+        }
+        getAdministrators();
     };
 
     const [addFormData, setAddFormData] = useState({
@@ -134,6 +146,17 @@ export default function Management() {
     }
     return (
         <div className="app-container">
+            <Dropdown style={{ marginBottom: 30, marginTop: 30 }}>
+                <Dropdown.Toggle variant="primary" id="dropdown-basic" size="lg">
+                    Dropdown Button
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
             <form onSubmit={handleEditFormSubmit}>
                 <table>
                     <thead>

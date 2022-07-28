@@ -1,17 +1,50 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [open, setOpen] = useState(false);
 
-    const [result, setResult] = useState("");
+    useEffect(() => {
+        getLoginStatus();
+    }, []);
 
-    function handleLogin() {
-        fetch('api/administrators/email=' + username + '&password=' + password)
-            .then(response => response.json())
-            .then(data => setResult(data))
-            .then(console.log(result));
+    const handleLogin = async () => {
+        const response = await fetch('api/administrators/email=' + username + '&password=' + password);
+        const data = await response.json();
+        if (data.toString() == '1')
+        {
+            window.location.href = 'management';
+            return;
+        }
+        else
+        {
+            handleClickOpen();
+        }
     }
+
+    const getLoginStatus = async () => {
+        const response = await fetch('api/administrators/login_status');
+        const data = await response.json();
+        if (data.toString() == 'true')
+        {
+            window.location.href = 'management';
+        }
+    };
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <div>
@@ -28,6 +61,27 @@ export default function Login() {
                 </button>
             </form>
             <button onClick={handleLogin}>Submit2</button>
+
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    {"Authentication Error"}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Password not matching or username not exists!
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} autoFocus>
+                        Try again
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 }
