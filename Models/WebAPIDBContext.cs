@@ -14,9 +14,9 @@ namespace HippocampusUON.Models
         }
 
         public DbSet<Administrator> Administrators { get; set; }
-        public DbSet<PagesTable> PagesTable { get; set; }
-        public DbSet<ImageContent> ImageContents { get; set; }
         public DbSet<LinkContent> LinkContents { get; set; }
         public DbSet<TextContent> TextContents { get; set; }
+        public DbSet<UpcomingEvents> UpcomingEvents { get; set; }
+        public DbSet<TimelineActivities> TimelineActivities { get; set; }
     }
 }

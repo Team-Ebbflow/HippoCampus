@@ -26,65 +26,98 @@ namespace HippocampusUON.Controllers
             _context = context;
         }
 
-        // GET: api/Pages
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<PagesTable>>> GetPagesTable()
+        // GET: api/pages/linkall
+        [HttpGet("linkall")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<LinkContent>>> GetLinkContentAll()
         {
-            return await _context.PagesTable.ToListAsync();
+            return await _context.LinkContents
+                .Select(x => new LinkContent { Id = x.Id, Identifier = x.Identifier, Content = x.Content, Description = x.Description })
+                .ToListAsync();
         }
 
-        // GET: api/Pages/page&id={id}
-        [HttpGet("page&id={id}")]
+        // GET: api/pages/link&iden={iden}
+        [HttpGet("link&iden={iden}")]
         [AllowAnonymous]
-        public async Task<ActionResult<PagesTable>> GetPagesTable(int id)
+        public ActionResult<string> GetLinkContent(string iden)
         {
-            var pagesTable = await _context.PagesTable.FindAsync(id);
-
-            if (pagesTable == null)
-            {
-                return NotFound();
-            }
-
-            return pagesTable;
-        }
-
-        // GET: api/pages/image&id={id}
-        [HttpGet("image&id={id}")]
-        [AllowAnonymous]
-        public async Task<ActionResult<ImageContent>> GetImageContent(int id)
-        {
-            var imageContent = await _context.ImageContents.FindAsync(id);
-            //var imageContent = await _context.ImageContents.FromSqlInterpolated($"SELECT [dbo].[PagesTable].pageID, imageContentID, imageURI, imageDescription FROM [dbo].[ImageContents] INNER JOIN [dbo].[PagesTable] ON [dbo].[PagesTable].pageID = [dbo].[ImageContents].pageID WHERE [dbo].[ImageContents].imageContentID = {id}")
-
-            if (imageContent == null)
-            {
-                return NotFound();
-            }
-
-            return imageContent;
-        }
-
-        // GET: api/pages/link&id={id}
-        [HttpGet("link&id={id}")]
-        [AllowAnonymous]
-        public async Task<ActionResult<LinkContent>> GetLinkContent(int id)
-        {
-            var linkContent = await _context.LinkContents.FindAsync(id);
-
+            var linkContent = _context.LinkContents.FromSqlInterpolated($"SELECT * FROM [dbo].[LinkContents] WHERE [dbo].[LinkContents].Identifier = {iden}").FirstOrDefault();
             if (linkContent == null)
             {
                 return NotFound();
             }
 
-            return linkContent;
+            return linkContent.Content;
         }
 
-        // GET: api/pages/text&id={id}
-        [HttpGet("text&id={id}")]
-        [AllowAnonymous]
-        public async Task<ActionResult<TextContent>> GetTextContent(int id)
+        // PUT: api/Pages/5
+        [HttpPut("link&{id}")]
+        public async Task<IActionResult> PutLinkContent(int id, LinkContent linkContent)
         {
-            var textContent = await _context.TextContents.FindAsync(id);
+            if (id != linkContent.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(linkContent).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!LinkContentExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // POST: api/Pages
+        [HttpPost("link")]
+        public async Task<ActionResult<LinkContent>> PostPagesTable(LinkContent linkContent)
+        {
+            _context.LinkContents.Add(linkContent);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetLinkContent", new { id = linkContent.Id }, linkContent);
+        }
+
+        // DELETE: api/Pages/5
+        [HttpDelete("link&{id}")]
+        public async Task<ActionResult<LinkContent>> DeletePagesTable(int id)
+        {
+            var content = await _context.LinkContents.FindAsync(id);
+            if (content == null)
+            {
+                return NotFound();
+            }
+
+            _context.LinkContents.Remove(content);
+            await _context.SaveChangesAsync();
+
+            return content;
+        }
+
+        private bool LinkContentExists(int id)
+        {
+            return _context.LinkContents.Any(e => e.Id == id);
+        }
+
+
+        // GET: api/pages/text&iden={iden}
+        [HttpGet("text&iden={iden}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<TextContent>> GetTextContent(string iden)
+        {
+            var textContent = await _context.TextContents.FindAsync(iden);
 
             if (textContent == null)
             {
@@ -93,7 +126,7 @@ namespace HippocampusUON.Controllers
 
             return textContent;
         }
-
+        /*
         // PUT: api/Pages/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPagesTable(int id, PagesTable pagesTable)
@@ -149,10 +182,6 @@ namespace HippocampusUON.Controllers
 
             return pagesTable;
         }
-
-        private bool PagesTableExists(int id)
-        {
-            return _context.PagesTable.Any(e => e.pageID == id);
-        }
+        */
     }
 }

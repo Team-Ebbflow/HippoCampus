@@ -263,6 +263,8 @@ h1 {
     left: 0;
     right: 0;
     margin: 30px auto auto auto;
+    padding: 10px;
+    overflow-wrap: break-word;
 }
 
 .timelineText {

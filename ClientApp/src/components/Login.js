@@ -5,6 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import './Login.css';
 
 export default function Login() {
     const [username, setUsername] = useState("");
@@ -48,7 +49,7 @@ export default function Login() {
 
     return (
         <div>
-            <form onSubmit={handleLogin}>
+            <form>
                 <label>
                     User ID : <input type="text" name="user_id" value={username} onChange={(e) => setUsername(e.target.value)} />
                 </label>
@@ -56,11 +57,8 @@ export default function Login() {
                 <label>
                     Password: <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </label>
-                <button type="submit" value="submit">
-                    Submit
-                </button>
             </form>
-            <button onClick={handleLogin}>Submit2</button>
+            <button onClick={handleLogin}>Submit</button>
 
             <Dialog
                 open={open}

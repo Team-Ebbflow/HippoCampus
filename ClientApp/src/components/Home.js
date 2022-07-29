@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
 import './style.css'
 import Timeline from '@mui/lab/Timeline';
@@ -28,14 +28,33 @@ const galleryImages = [
 
 export default function Home() {
     useEffect(() => {
+        getData();
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, []);
+    
+    const [isLoading, setLoading] = useState(true);
+    const [homeTopVideo, setHomeTopVideo] = useState("");
 
+    const getData = async () => {
+        const response = await fetch('api/pages/link&iden=homeTopVideo');
+        const data = await response.text();
+        setHomeTopVideo(data);
+
+        setLoading(false);
+    };
+
+    if (isLoading) {
+        return (
+            <div>
+                <h1> Loading page, we'll bring you there soon... </h1>
+            </div>
+        )
+    }
     return (
         <div>
             <div id='video-view'>
                 <video width={'100%'} autoPlay loop muted id='homebgvideo'>
-                    <source src="https://sea3381808.blob.core.windows.net/videos/uonpropoganda.mp4" type="video/mp4" />
+                    <source src={homeTopVideo} type="video/mp4" />
                 </video>
             </div>
 

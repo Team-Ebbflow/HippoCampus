@@ -1,7 +1,6 @@
 ﻿import React, { useState, Fragment, useEffect } from "react";
 import { nanoid } from "nanoid";
 import "./Management.css";
-import "./Management.json";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -33,18 +32,30 @@ export default function Management() {
         getAdministrators();
     };
 
+    const putAdministrator = async (id = -1, data = {}) => {
+        data = JSON.stringify(data);
+        console.log(id);
+        console.log(data);
+        const response = await fetch('api/administrators/' + id, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: data
+        })
+        return response.json();
+    }
+
     const [addFormData, setAddFormData] = useState({
-        fullName: "",
-        address: "",
-        phoneNumber: "",
-        email: "",
+        adminFirstName: "",
+        adminLastName: "",
+        adminMobile: "",
+        adminEmail: "",
     });
 
     const [editFormData, setEditFormData] = useState({
-        fullName: "",
-        address: "",
-        phoneNumber: "",
-        email: "",
+        adminFirstName: "",
+        adminLastName: "",
+        adminMobile: "",
+        adminEmail: "",
     });
 
     const [editContactId, setEditContactId] = useState(null);
@@ -78,13 +89,14 @@ export default function Management() {
 
         const newContact = {
             id: nanoid(),
-            fullName: addFormData.fullName,
-            address: addFormData.address,
-            phoneNumber: addFormData.phoneNumber,
-            email: addFormData.email,
+            adminFirstName: addFormData.adminFirstName,
+            adminLastName: addFormData.adminLastName,
+            adminMobile: addFormData.adminMobile,
+            adminEmail: addFormData.adminEmail,
         };
 
         const newContacts = [...contacts, newContact];
+
         setContacts(newContacts);
     };
 
@@ -93,17 +105,27 @@ export default function Management() {
 
         const editedContact = {
             id: editContactId,
-            fullName: editFormData.fullName,
-            address: editFormData.address,
-            phoneNumber: editFormData.phoneNumber,
-            email: editFormData.email,
+            adminFirstName: editFormData.adminFirstName,
+            adminLastName: editFormData.adminLastName,
+            adminMobile: editFormData.adminMobile,
+            adminEmail: editFormData.adminEmail,
         };
 
         const newContacts = [...contacts];
 
-        const index = contacts.findIndex((contact) => contact.id === editContactId);
+        const index = contacts.findIndex((contact) => contact.adminId === editContactId);
 
         newContacts[index] = editedContact;
+
+        const editedContactPut = {
+            adminId: editContactId,
+            adminFirstName: editFormData.adminFirstName,
+            adminLastName: editFormData.adminLastName,
+            adminMobile: editFormData.adminMobile,
+            adminEmail: editFormData.adminEmail,
+            adminPassword: ""
+        };
+        putAdministrator(editContactId, editedContactPut);
 
         setContacts(newContacts);
         setEditContactId(null);
@@ -111,13 +133,13 @@ export default function Management() {
 
     const handleEditClick = (event, contact) => {
         event.preventDefault();
-        setEditContactId(contact.id);
+        setEditContactId(contact.adminId);
 
         const formValues = {
-            fullName: contact.fullName,
-            address: contact.address,
-            phoneNumber: contact.phoneNumber,
-            email: contact.email,
+            adminFirstName: contact.adminFirstName,
+            adminLastName: contact.adminLastName,
+            adminMobile: contact.adminMobile,
+            adminEmail: contact.adminEmail,
         };
 
         setEditFormData(formValues);
@@ -130,7 +152,7 @@ export default function Management() {
     const handleDeleteClick = (contactId) => {
         const newContacts = [...contacts];
 
-        const index = contacts.findIndex((contact) => contact.id === contactId);
+        const index = contacts.findIndex((contact) => contact.adminId === contactId);
 
         newContacts.splice(index, 1);
 
@@ -161,8 +183,8 @@ export default function Management() {
                 <table>
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Address</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                             <th>Phone Number</th>
                             <th>Email</th>
                             <th>Actions</th>
@@ -171,7 +193,7 @@ export default function Management() {
                     <tbody>
                         {contacts.map((contact) => (
                             <Fragment>
-                                {editContactId === contact.id ? (
+                                {editContactId === contact.adminId ? (
                                     <EditableRow
                                         editFormData={editFormData}
                                         handleEditFormChange={handleEditFormChange}
@@ -190,32 +212,32 @@ export default function Management() {
                 </table>
             </form>
 
-            <h2>Add a Contact</h2>
+            <h2>Add an entry</h2>
             <form onSubmit={handleAddFormSubmit}>
                 <input
                     type="text"
-                    name="fullName"
+                    name="adminFirstName"
                     required="required"
                     placeholder="Enter a name..."
                     onChange={handleAddFormChange}
                 />
                 <input
                     type="text"
-                    name="address"
+                    name="adminLastName"
                     required="required"
-                    placeholder="Enter an addres..."
+                    placeholder="Enter an address..."
                     onChange={handleAddFormChange}
                 />
                 <input
                     type="text"
-                    name="phoneNumber"
+                    name="adminMobile"
                     required="required"
                     placeholder="Enter a phone number..."
                     onChange={handleAddFormChange}
                 />
                 <input
                     type="email"
-                    name="email"
+                    name="adminEmail"
                     required="required"
                     placeholder="Enter an email..."
                     onChange={handleAddFormChange}
