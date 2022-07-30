@@ -95,19 +95,190 @@ namespace HippocampusUON.Controllers
         }
 
 
-        // GET: api/pages/text&iden={iden}
+
+
+
+        [HttpGet("textall")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<TextContent>>> GetTextContentAll()
+        {
+            return await _context.TextContents
+                .Select(x => new TextContent { Id = x.Id, Identifier = x.Identifier, Content = x.Content, Description = x.Description })
+                .ToListAsync();
+        }
+
         [HttpGet("text&iden={iden}")]
         [AllowAnonymous]
-        public async Task<ActionResult<TextContent>> GetTextContent(string iden)
+        public ActionResult<string> GetTextContent(string iden)
         {
-            var textContent = await _context.TextContents.FindAsync(iden);
-
+            var textContent = _context.TextContents.FromSqlInterpolated($"SELECT * FROM [dbo].[TextContents] WHERE [dbo].[TextContents].Identifier = {iden}").FirstOrDefault();
             if (textContent == null)
             {
                 return NotFound();
             }
 
-            return textContent;
+            return textContent.Content;
+        }
+
+        [HttpPut("text&{id}")]
+        public async Task<IActionResult> PutTextContent(TextContent textContent)
+        {
+            _context.Entry(textContent).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+
+            return Ok("1");
+        }
+
+        [HttpPost("text")]
+        public async Task<ActionResult<TextContent>> PostTextContent(TextContent textContent)
+        {
+            _context.TextContents.Add(textContent);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetTextContent", new { id = textContent.Id }, textContent);
+        }
+
+        [HttpDelete("text&{id}")]
+        public async Task<ActionResult<TextContent>> DeleteTextContent(int id)
+        {
+            var content = await _context.TextContents.FindAsync(id);
+            if (content == null)
+            {
+                return NotFound();
+            }
+
+            _context.TextContents.Remove(content);
+            await _context.SaveChangesAsync();
+
+            return content;
+        }
+
+
+
+
+        [HttpGet("timelineall")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<TimelineActivities>>> GetTimelineActivityAll()
+        {
+            return await _context.TimelineActivities
+                .Select(x => new TimelineActivities { Id = x.Id, Identifier = x.Identifier, EventContent = x.EventContent, Date = x.Date })
+                .OrderBy(x => x.Date)
+                .ToListAsync();
+        }
+
+        [HttpPut("timeline&{id}")]
+        public async Task<IActionResult> PutTimelineActivity(TimelineActivities timelineActivities)
+        {
+            _context.Entry(timelineActivities).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+
+            return Ok("1");
+        }
+
+        [HttpPost("timeline")]
+        public async Task<ActionResult<TimelineActivities>> PostTimelineActivity(TimelineActivities timelineActivities)
+        {
+            _context.TimelineActivities.Add(timelineActivities);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetTimelineActivity", new { id = timelineActivities.Id }, timelineActivities);
+        }
+
+        [HttpDelete("timeline&{id}")]
+        public async Task<ActionResult<TimelineActivities>> DeleteTimelineActivity(int id)
+        {
+            var content = await _context.TimelineActivities.FindAsync(id);
+            if (content == null)
+            {
+                return NotFound();
+            }
+
+            _context.TimelineActivities.Remove(content);
+            await _context.SaveChangesAsync();
+
+            return content;
+        }
+
+
+
+
+        [HttpGet("eventall")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<UpcomingEvents>>> GetUpcomingEventsAll()
+        {
+            return await _context.UpcomingEvents
+                .Select(x => new UpcomingEvents { Id = x.Id, Identifier = x.Identifier, EventContent = x.EventContent, Time = x.Time })
+                .ToListAsync();
+        }
+
+        [HttpGet("event&iden={iden}")]
+        [AllowAnonymous]
+        public ActionResult<UpcomingEvents> GetUpcomingEvent(string iden)
+        {
+            var upcomingEvent = _context.UpcomingEvents.FromSqlInterpolated($"SELECT * FROM [dbo].[UpcomingEvents] WHERE [dbo].[UpcomingEvents].Identifier = {iden}").FirstOrDefault();
+            if (upcomingEvent == null)
+            {
+                return NotFound();
+            }
+
+            return upcomingEvent;
+        }
+
+        [HttpPut("event&{id}")]
+        public async Task<IActionResult> PutUpcomingEvent(UpcomingEvents upcomingEvents)
+        {
+            _context.Entry(upcomingEvents).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+
+            return Ok("1");
+        }
+
+        [HttpPost("event")]
+        public async Task<ActionResult<UpcomingEvents>> PostUpcomingEvent(UpcomingEvents upcomingEvents)
+        {
+            _context.UpcomingEvents.Add(upcomingEvents);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetUpcomingEvent", new { id = upcomingEvents.Id }, upcomingEvents);
+        }
+
+        [HttpDelete("event&{id}")]
+        public async Task<ActionResult<UpcomingEvents>> DeleteUpcomingEvent(int id)
+        {
+            var content = await _context.UpcomingEvents.FindAsync(id);
+            if (content == null)
+            {
+                return NotFound();
+            }
+
+            _context.UpcomingEvents.Remove(content);
+            await _context.SaveChangesAsync();
+
+            return content;
         }
     }
 }

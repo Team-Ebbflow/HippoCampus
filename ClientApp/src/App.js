@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react'
 import NavMenu from './components/NavMenu';
-import EventPage from './components/EventPage';
 import Home from './components/Home';
 import Login from './components/Login';
 import Guide from './components/Guide';
 import Club from './components/Club';
 import Footer from './components/Footer';
 import ManagementAdministrator from './components/ManagementAdministrator';
+import ManagementLinkContent from './components/ManagementLinkContent';
+import ManagementTextContent from './components/ManagementTextContent';
+import ManagementTimeline from './components/ManagementTimeline';
+import ManagementUpcomingEvents from './components/ManagementUpcomingEvents';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { unregister } from './registerServiceWorker';
@@ -18,9 +21,9 @@ function App() {
 
   useEffect(() => {
     unregister();
-    let isRedirected = sessionStorage.getItem('isRedirected5');
+    let isRedirected = sessionStorage.getItem('isRedirected6');
     if (!isRedirected) {
-      sessionStorage.setItem('isRedirected5', true);
+      sessionStorage.setItem('isRedirected6', true);
       window.location.reload(true);
     }
   });
@@ -33,11 +36,14 @@ function App() {
         <body>
           <Switch>
             <Route exact={true} path="/home" component={Home} />
-            <Route exact path="/event" component={EventPage} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/guide" component={Guide} />
             <Route exact path="/club" component={Club} />
             <Route exact path="/management/administrator" component={ManagementAdministrator} />
+            <Route exact path="/management/links" component={ManagementLinkContent} />
+            <Route exact path="/management/texts" component={ManagementTextContent} />
+            <Route exact path="/management/timeline" component={ManagementTimeline} />
+            <Route exact path="/management/upcoming-events" component={ManagementUpcomingEvents} />
             <Route component={Home} />
           </Switch>
         </body>

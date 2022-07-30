@@ -18,6 +18,7 @@
 .clubLine #two {
     font-size: 30px;
     flex: 3;
+    overflow-wrap: break-word;
 }
 
 .clubLine .clubIcon {

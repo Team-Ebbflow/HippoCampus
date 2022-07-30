@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import "./Management.css";
 import Dropdown from 'react-bootstrap/Dropdown';
 
-export default function ManagementAdministrator() {
+export default function ManagementTimeline() {
     
     const [contacts, setContacts] = useState(null);
     const [isLoading, setLoading] = useState(true);
@@ -12,9 +12,14 @@ export default function ManagementAdministrator() {
         getLoginStatus();
     }, []);
 
-    const getAdministrators = async () => {
-        const response = await fetch('api/administrators');
+    const getData = async () => {
+        const response = await fetch('api/pages/timelineall');
         const data = await response.json();
+
+        for (var i = 0; i < data.length; i++) {
+            data[i].date = data[i].date.slice(0, 10);
+        }
+
         setContacts(data);
         setLoading(false);
     };
@@ -27,12 +32,12 @@ export default function ManagementAdministrator() {
             window.location.href = 'login';
             return;
         }
-        getAdministrators();
+        getData();
     };
 
-    const putAdministrator = async (id = -1, data = {}) => {
+    const putData = async (id = -1, data = {}) => {
         data = JSON.stringify(data);
-        const response = await fetch('api/administrators/' + id, {
+        const response = await fetch('api/pages/timeline&' + id, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: data
@@ -40,9 +45,9 @@ export default function ManagementAdministrator() {
         return response.json();
     }
 
-    const postAdministrator = async (data = {}) => {
+    const postData = async (data = {}) => {
         data = JSON.stringify(data);
-        const response = await fetch('api/administrators', {
+        const response = await fetch('api/pages/timeline', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: data
@@ -50,25 +55,23 @@ export default function ManagementAdministrator() {
         return response.json();
     }
 
-    const deleteAdministrator = async (id = -1) => {
-        const response = await fetch('api/administrators/' + id, {
+    const deleteData = async (id = -1) => {
+        const response = await fetch('api/pages/timeline&' + id, {
             method: 'DELETE',
         })
         return response.json();
     }
 
     const [addFormData, setAddFormData] = useState({
-        adminFirstName: "",
-        adminLastName: "",
-        adminMobile: "",
-        adminEmail: "",
+        identifier: "",
+        eventContent: "",
+        date: "",
     });
 
     const [editFormData, setEditFormData] = useState({
-        adminFirstName: "",
-        adminLastName: "",
-        adminMobile: "",
-        adminEmail: "",
+        identifier: "",
+        eventContent: "",
+        date: "",
     });
 
     const [editContactId, setEditContactId] = useState(null);
@@ -102,22 +105,19 @@ export default function ManagementAdministrator() {
 
         const newContact = {
             id: nanoid(),
-            adminFirstName: addFormData.adminFirstName,
-            adminLastName: addFormData.adminLastName,
-            adminMobile: addFormData.adminMobile,
-            adminEmail: addFormData.adminEmail,
+            identifier: addFormData.identifier,
+            eventContent: addFormData.eventContent,
+            date: addFormData.date,
         };
 
         const newContacts = [...contacts, newContact];
 
         const newContactPost = {
-            adminFirstName: addFormData.adminFirstName,
-            adminLastName: addFormData.adminLastName,
-            adminMobile: addFormData.adminMobile,
-            adminEmail: addFormData.adminEmail,
-            adminPassword: ""
+            identifier: addFormData.identifier,
+            eventContent: addFormData.eventContent,
+            date: addFormData.date,
         };
-        postAdministrator(newContactPost);
+        postData(newContactPost);
 
         setContacts(newContacts);
     };
@@ -127,27 +127,18 @@ export default function ManagementAdministrator() {
 
         const editedContact = {
             id: editContactId,
-            adminFirstName: editFormData.adminFirstName,
-            adminLastName: editFormData.adminLastName,
-            adminMobile: editFormData.adminMobile,
-            adminEmail: editFormData.adminEmail,
+            identifier: editFormData.identifier,
+            eventContent: editFormData.eventContent,
+            date: editFormData.date,
         };
 
         const newContacts = [...contacts];
 
-        const index = contacts.findIndex((contact) => contact.adminId === editContactId);
+        const index = contacts.findIndex((contact) => contact.id === editContactId);
 
         newContacts[index] = editedContact;
 
-        const editedContactPut = {
-            adminId: editContactId,
-            adminFirstName: editFormData.adminFirstName,
-            adminLastName: editFormData.adminLastName,
-            adminMobile: editFormData.adminMobile,
-            adminEmail: editFormData.adminEmail,
-            adminPassword: ""
-        };
-        putAdministrator(editContactId, editedContactPut);
+        putData(editContactId, editedContact);
 
         setContacts(newContacts);
         setEditContactId(null);
@@ -155,13 +146,12 @@ export default function ManagementAdministrator() {
 
     const handleEditClick = (event, contact) => {
         event.preventDefault();
-        setEditContactId(contact.adminId);
+        setEditContactId(contact.id);
 
         const formValues = {
-            adminFirstName: contact.adminFirstName,
-            adminLastName: contact.adminLastName,
-            adminMobile: contact.adminMobile,
-            adminEmail: contact.adminEmail,
+            identifier: contact.identifier,
+            eventContent: contact.eventContent,
+            date: contact.date,
         };
 
         setEditFormData(formValues);
@@ -174,35 +164,13 @@ export default function ManagementAdministrator() {
     const handleDeleteClick = (contactId) => {
         const newContacts = [...contacts];
 
-        const index = contacts.findIndex((contact) => contact.adminId === contactId);
+        const index = contacts.findIndex((contact) => contact.id === contactId);
 
         newContacts.splice(index, 1);
 
-        deleteAdministrator(contactId);
+        deleteData(contactId);
 
         setContacts(newContacts);
-    };
-
-    const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {
-        return (
-            <tr>
-                <td>{contact.adminFirstName}</td>
-                <td>{contact.adminLastName}</td>
-                <td>{contact.adminMobile}</td>
-                <td>{contact.adminEmail}</td>
-                <td>
-                    <button
-                        type="button"
-                        onClick={(event) => handleEditClick(event, contact)}
-                    >
-                        Edit
-                    </button>
-                    <button type="button" onClick={() => handleDeleteClick(contact.adminId)}>
-                        Delete
-                    </button>
-                </td>
-            </tr>
-        );
     };
 
     if (isLoading) {
@@ -216,13 +184,13 @@ export default function ManagementAdministrator() {
         <div className="app-container">
             <Dropdown style={{ marginBottom: 30, marginTop: 30 }}>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic" size="lg">
-                    Administrators
+                    Timeline Activities
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
+                    <Dropdown.Item href="management/administrator">Administrators</Dropdown.Item>
                     <Dropdown.Item href="management/links">Links</Dropdown.Item>
                     <Dropdown.Item href="management/texts">Texts</Dropdown.Item>
-                    <Dropdown.Item href="management/timeline">Timeline Activities</Dropdown.Item>
                     <Dropdown.Item href="management/upcoming-events">Upcoming Events</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
@@ -230,17 +198,16 @@ export default function ManagementAdministrator() {
                 <table>
                     <thead>
                         <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Phone Number</th>
-                            <th>Email</th>
+                            <th>Identifier</th>
+                            <th>Event Content</th>
+                            <th>Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {contacts.map((contact) => (
                             <Fragment>
-                                {editContactId === contact.adminId ? (
+                                {editContactId === contact.id ? (
                                     <EditableRow
                                         editFormData={editFormData}
                                         handleEditFormChange={handleEditFormChange}
@@ -263,38 +230,52 @@ export default function ManagementAdministrator() {
             <form onSubmit={handleAddFormSubmit}>
                 <input
                     type="text"
-                    name="adminFirstName"
+                    name="identifier"
                     required="required"
-                    placeholder="Enter first name..."
+                    placeholder="Enter Identifier..."
                     onChange={handleAddFormChange}
                 />
                 <input
                     type="text"
-                    name="adminLastName"
+                    name="eventContent"
                     required="required"
-                    placeholder="Enter last name..."
+                    placeholder="Enter Content..."
                     onChange={handleAddFormChange}
                 />
                 <input
                     type="text"
-                    name="adminMobile"
+                    name="date"
                     required="required"
-                    placeholder="Enter a phone number..."
-                    onChange={handleAddFormChange}
-                />
-                <input
-                    type="email"
-                    name="adminEmail"
-                    required="required"
-                    placeholder="Enter an email..."
+                    placeholder="Enter Date (YYYY-MM-DD)..."
                     onChange={handleAddFormChange}
                 />
                 <button type="submit">Add</button>
             </form>
-            <h3>Default password: lastname+mobile</h3>
+            <h3>The identifier here doesn't matter as long as it's unique. Sequence of the activities will get automatically reordered by Date</h3>
         </div>
     );
 }
+
+const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {
+    return (
+        <tr>
+            <td>{contact.identifier}</td>
+            <td>{contact.eventContent}</td>
+            <td>{contact.date}</td>
+            <td>
+                <button
+                    type="button"
+                    onClick={(event) => handleEditClick(event, contact)}
+                >
+                    Edit
+                </button>
+                <button type="button" onClick={() => handleDeleteClick(contact.id)}>
+                    Delete
+                </button>
+            </td>
+        </tr>
+    );
+};
 
 const EditableRow = ({
     editFormData,
@@ -307,9 +288,9 @@ const EditableRow = ({
                 <input
                     type="text"
                     required="required"
-                    placeholder="Enter first name..."
-                    name="adminFirstName"
-                    value={editFormData.adminFirstName}
+                    placeholder="Enter Identifier..."
+                    name="identifier"
+                    value={editFormData.identifier}
                     onChange={handleEditFormChange}
                 ></input>
             </td>
@@ -317,9 +298,9 @@ const EditableRow = ({
                 <input
                     type="text"
                     required="required"
-                    placeholder="Enter last name..."
-                    name="adminLastName"
-                    value={editFormData.adminLastName}
+                    placeholder="Enter Content..."
+                    name="eventContent"
+                    value={editFormData.eventContent}
                     onChange={handleEditFormChange}
                 ></input>
             </td>
@@ -327,19 +308,9 @@ const EditableRow = ({
                 <input
                     type="text"
                     required="required"
-                    placeholder="Enter a phone number..."
-                    name="adminMobile"
-                    value={editFormData.adminMobile}
-                    onChange={handleEditFormChange}
-                ></input>
-            </td>
-            <td>
-                <input
-                    type="email"
-                    required="required"
-                    placeholder="Enter an email..."
-                    name="adminEmail"
-                    value={editFormData.adminEmail}
+                    placeholder="Enter Date (YYYY-MM-DD)..."
+                    name="date"
+                    value={editFormData.date}
                     onChange={handleEditFormChange}
                 ></input>
             </td>

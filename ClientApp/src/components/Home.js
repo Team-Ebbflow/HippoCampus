@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.css'
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
@@ -11,20 +10,6 @@ import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import ImageGallery from 'react-image-gallery';
 import ReactPlayer from 'react-player'
 
-const galleryImages = [
-  {
-    original: 'https://sea3381808.blob.core.windows.net/images/MMP0043.jpg',
-    description: 'Our uni is beautiful',
-  },
-  {
-    original: 'https://sea3381808.blob.core.windows.net/images/gayUONhehe.png',
-    description: 'We love gays',
-  },
-  {
-    original: 'https://sea3381808.blob.core.windows.net/images/students_studying.png',
-    description: 'You study till you die',
-  },
-];
 
 export default function Home() {
     useEffect(() => {
@@ -33,28 +18,225 @@ export default function Home() {
     }, []);
     
     const [isLoading, setLoading] = useState(true);
+
     const [homeTopVideo, setHomeTopVideo] = useState("");
     const [banner1, setBanner1] = useState("");
     const [banner2, setBanner2] = useState("");
     const [banner3, setBanner3] = useState("");
-    const [card1, setCard1] = useState("");
-    const [card2, setCard2] = useState("");
-    const [card3, setCard3] = useState("");
+    const [card1Image, setCard1Image] = useState("");
+    const [card2Image, setCard2Image] = useState("");
+    const [card3Image, setCard3Image] = useState("");
     const [homeTestimonyVid, setHomeTestimonyVid] = useState("");
     const [homeTestimonyPortrait1, setHomeTestimonyPortrait1] = useState("");
     const [homeTestimonyPortrait2, setHomeTestimonyPortrait2] = useState("");
-    const [club1, setClub1] = useState("");
-    const [club2, setClub2] = useState("");
-    const [club3, setClub3] = useState("");
-    const [club4, setClub4] = useState("");
+    const [club1Image, setClub1Image] = useState("");
+    const [club2Image, setClub2Image] = useState("");
+    const [club3Image, setClub3Image] = useState("");
+    const [club4Image, setClub4Image] = useState("");
+
+    const [homeCardTitle1, setHomeCardTitle1] = useState("");
+    const [homeCardTitle2, setHomeCardTitle2] = useState("");
+    const [homeCardTitle3, setHomeCardTitle3] = useState("");
+    const [homeCardContent1, setHomeCardContent1] = useState("");
+    const [homeCardContent2, setHomeCardContent2] = useState("");
+    const [homeCardContent3, setHomeCardContent3] = useState("");
+    const [homeTestimonyContent1, setHomeTestimonyContent1] = useState("");
+    const [homeTestimonyContent2, setHomeTestimonyContent2] = useState("");
 
     const getData = async () => {
-        const response = await fetch('api/pages/link&iden=homeTopVideo');
-        const data = await response.text();
-        setHomeTopVideo(data);
+        let response = null;
+        let data = "";
+
+        try {
+            response = await fetch('api/pages/link&iden=homeTopVideo');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setHomeTopVideo(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=banner1');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setBanner1(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=banner2');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setBanner2(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=banner3');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setBanner3(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=card1Image');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setCard1Image(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=card2Image');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setCard2Image(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=card3Image');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setCard3Image(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=homeTestimonyVid');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setHomeTestimonyVid(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=homeTestimonyPortrait1');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setHomeTestimonyPortrait1(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=homeTestimonyPortrait2');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setHomeTestimonyPortrait2(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=club1Image');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setClub1Image(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=club2Image');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setClub2Image(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=club3Image');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setClub3Image(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=club4Image');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setClub4Image(data);
+        }
+
+        try {
+            response = await fetch('api/pages/text&iden=homeCardTitle1');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setHomeCardTitle1(data);
+        }
+
+        try {
+            response = await fetch('api/pages/text&iden=homeCardTitle2');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setHomeCardTitle2(data);
+        }
+
+        try {
+            response = await fetch('api/pages/text&iden=homeCardTitle3');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setHomeCardTitle3(data);
+        }
+
+        try {
+            response = await fetch('api/pages/text&iden=homeCardContent1');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setHomeCardContent1(data);
+        }
+
+        try {
+            response = await fetch('api/pages/text&iden=homeCardContent2');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setHomeCardContent2(data);
+        }
+
+        try {
+            response = await fetch('api/pages/text&iden=homeCardContent3');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setHomeCardContent3(data);
+        }
+
+        try {
+            response = await fetch('api/pages/text&iden=homeTestimonyContent1');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setHomeTestimonyContent1(data);
+        }
+
+        try {
+            response = await fetch('api/pages/text&iden=homeTestimonyContent2');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setHomeTestimonyContent2(data);
+        }
 
         setLoading(false);
     };
+
+    const galleryImages = [
+        {
+            original: banner1,
+        },
+        {
+            original: banner2,
+        },
+        {
+            original: banner3,
+        },
+    ];
 
     if (isLoading) {
         return (
@@ -156,28 +338,28 @@ export default function Home() {
 
             <div className='homeCardGroup'>
                 <div className='homeCard'>
-                    <img className='homeCardImage' src="https://cdn.discordapp.com/attachments/989084273522909234/989084596643721236/students_studying.jpg" alt='studentImage' />
+                    <img className='homeCardImage' src={card1Image} alt='studentImage' />
                     <div className='homeCardContent'>
-                        <p className='homeCardTitle'>Student</p>
-                        <p className='homeCardParagraph'>Student <br/>Great</p>
+                        <p className='homeCardTitle'>{homeCardTitle1}</p>
+                        <p className='homeCardParagraph'>{homeCardContent1}</p>
                         <button className='homeCardButton'>Explore</button>
                     </div>
                 </div>
 
                 <div className='homeCard'>
-                    <img className='homeCardImage' src="https://cdn.discordapp.com/attachments/989084273522909234/989834914943893525/Engineers_Australia_Student_Society.jpg" alt='studentImage' />
+                    <img className='homeCardImage' src={card2Image} alt='studentImage' />
                     <div className='homeCardContent'>
-                        <p className='homeCardTitle'>Student</p>
-                        <p className='homeCardParagraph'>Student <br/>Nice</p>
+                        <p className='homeCardTitle'>{homeCardTitle2}</p>
+                        <p className='homeCardParagraph'>{homeCardContent2}</p>
                         <button className='homeCardButton'>Explore</button>
                     </div>
                 </div>
 
                 <div className='homeCard'>
-                    <img className='homeCardImage' src="https://aecom.com/sg/wp-content/uploads/2019/03/MMP0043.jpg" alt='studentImage' />
+                    <img className='homeCardImage' src={card3Image} alt='studentImage' />
                     <div className='homeCardContent'>
-                        <p className='homeCardTitle'>Student</p>
-                        <p className='homeCardParagraph'>Student <br/>Awesome</p>
+                        <p className='homeCardTitle'>{homeCardTitle3}</p>
+                        <p className='homeCardParagraph'>{homeCardContent3}</p>
                         <button className='homeCardButton'>Explore</button>
                     </div>
                 </div>
@@ -187,7 +369,7 @@ export default function Home() {
                 <div className='testimonyVid'>
                     <h2 className='testimony'>Testimonies from students!</h2>
                     <ReactPlayer
-                        url='https://www.youtube.com/watch?v=a1x3q_ZSUpQ'
+                        url={homeTestimonyVid}
                         controls='true'
                         width={'100%'}
                          />
@@ -195,18 +377,18 @@ export default function Home() {
 
                 <div className='testimonyStickerBoard'>
                     <div className='testimonySticker' style={{marginLeft:30}}>
-                        <p className='testimonyText'>XD</p>
+                        <p className='testimonyText'>{homeTestimonyContent1}</p>
                         <img className='sticker' alt='sticker' src='https://sea3381808.blob.core.windows.net/images/stickerlight.png' />
                         <div className='mask1'>
-                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Patrick_Star.svg/1200px-Patrick_Star.svg.png" alt="portrait" className='portraitImage'></img>
+                            <img src={homeTestimonyPortrait1} alt="portrait" className='portraitImage'></img>
                         </div>
                     </div>
 
                     <div className='testimonySticker' style={{marginLeft:30}}>
-                        <p className='testimonyText'>XD</p>
+                        <p className='testimonyText'>{homeTestimonyContent2}</p>
                         <img className='sticker' alt='sticker' src='https://sea3381808.blob.core.windows.net/images/stickerdarker.png' />
                         <div className='mask1'>
-                            <img src="https://pyxis.nymag.com/v1/imgs/7aa/21a/c1de2c521f1519c6933fcf0d08e0a26fef-27-spongebob-squarepants.rsquare.w700.jpg" alt="portrait" className='portraitImage'></img>
+                            <img src={homeTestimonyPortrait2} alt="portrait" className='portraitImage'></img>
                         </div>
                     </div>
                 </div>
@@ -216,28 +398,34 @@ export default function Home() {
             <div className='clubGrid'>
                 <div className='clubContents'>
                     <a href='club/#club1'>
-                    <div className='circle'>
-                        <img className='circleImage' src='https://media.discordapp.net/attachments/933556870302547993/997840043123150858/unknown.png?width=484&height=484'/>
-                    </div>
+                        <div className='circle'>
+                            <img className='circleImage' src={club1Image} />
+                        </div>
                     </a>
-                </div> 
+                </div>
 
                 <div className='clubContents'>
-                    <div className='circle'>
-                        <img className='circleImage' src='https://media.discordapp.net/attachments/933556870302547993/997844179315068970/unknown.png?width=567&height=484'/>
-                    </div>
-                </div> 
+                    <a href='club/#club2'>
+                        <div className='circle'>
+                            <img className='circleImage' src={club2Image} />
+                        </div>
+                    </a>
+                </div>
 
                 <div className='clubContents'>
-                    <div className='circle'>
-                        <img className='circleImage' src='https://media.discordapp.net/attachments/933556870302547993/997845917292040202/IPRS_logo.png'/>
-                    </div>
-                </div> 
+                    <a href='club/#club3'>
+                        <div className='circle'>
+                            <img className='circleImage' src={club3Image} />
+                        </div>
+                    </a>
+                </div>
 
                 <div className='clubContents'>
-                    <div className='circle'>
-                        <img className='circleImage' src='https://media.discordapp.net/attachments/830006727838924801/997837436895903814/unknown.png?width=490&height=484'/>
-                    </div>
+                    <a href='club/#club4'>
+                        <div className='circle'>
+                            <img className='circleImage' src={club4Image} />
+                        </div>
+                    </a>
                 </div> 
             </div>
 
