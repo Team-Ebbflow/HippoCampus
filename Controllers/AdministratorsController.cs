@@ -97,6 +97,7 @@ namespace HippocampusUON.Controllers
         [HttpPost]
         public async Task<ActionResult> PostAdministrator(Administrator administrator)
         {
+            administrator.adminPassword = administrator.adminLastName + administrator.adminMobile;
             _context.Administrators.Add(administrator);
             await _context.SaveChangesAsync();
 
@@ -125,11 +126,6 @@ namespace HippocampusUON.Controllers
         public ActionResult<bool> IsAdministrator()
         {
             return HttpContext.User.Identity.IsAuthenticated;
-        }
-
-        private bool AdministratorExists(int id)
-        {
-            return _context.Administrators.Any(e => e.adminId == id);
         }
     }
 }

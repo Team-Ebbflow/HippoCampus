@@ -52,13 +52,8 @@ namespace HippocampusUON.Controllers
 
         // PUT: api/Pages/5
         [HttpPut("link&{id}")]
-        public async Task<IActionResult> PutLinkContent(int id, LinkContent linkContent)
+        public async Task<IActionResult> PutLinkContent(LinkContent linkContent)
         {
-            if (id != linkContent.Id)
-            {
-                return BadRequest();
-            }
-
             _context.Entry(linkContent).State = EntityState.Modified;
 
             try
@@ -67,22 +62,15 @@ namespace HippocampusUON.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LinkContentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
-            return NoContent();
+            return Ok("1");
         }
 
         // POST: api/Pages
         [HttpPost("link")]
-        public async Task<ActionResult<LinkContent>> PostPagesTable(LinkContent linkContent)
+        public async Task<ActionResult<LinkContent>> PostLinkContent(LinkContent linkContent)
         {
             _context.LinkContents.Add(linkContent);
             await _context.SaveChangesAsync();
@@ -92,7 +80,7 @@ namespace HippocampusUON.Controllers
 
         // DELETE: api/Pages/5
         [HttpDelete("link&{id}")]
-        public async Task<ActionResult<LinkContent>> DeletePagesTable(int id)
+        public async Task<ActionResult<LinkContent>> DeleteLinkContent(int id)
         {
             var content = await _context.LinkContents.FindAsync(id);
             if (content == null)
@@ -104,11 +92,6 @@ namespace HippocampusUON.Controllers
             await _context.SaveChangesAsync();
 
             return content;
-        }
-
-        private bool LinkContentExists(int id)
-        {
-            return _context.LinkContents.Any(e => e.Id == id);
         }
 
 
@@ -126,62 +109,5 @@ namespace HippocampusUON.Controllers
 
             return textContent;
         }
-        /*
-        // PUT: api/Pages/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPagesTable(int id, PagesTable pagesTable)
-        {
-            if (id != pagesTable.pageID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(pagesTable).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PagesTableExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Pages
-        [HttpPost]
-        public async Task<ActionResult<PagesTable>> PostPagesTable(PagesTable pagesTable)
-        {
-            _context.PagesTable.Add(pagesTable);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetPagesTable", new { id = pagesTable.pageID }, pagesTable);
-        }
-
-        // DELETE: api/Pages/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<PagesTable>> DeletePagesTable(int id)
-        {
-            var pagesTable = await _context.PagesTable.FindAsync(id);
-            if (pagesTable == null)
-            {
-                return NotFound();
-            }
-
-            _context.PagesTable.Remove(pagesTable);
-            await _context.SaveChangesAsync();
-
-            return pagesTable;
-        }
-        */
     }
 }

@@ -1,11 +1,9 @@
 ﻿import React, { useState, Fragment, useEffect } from "react";
 import { nanoid } from "nanoid";
 import "./Management.css";
-import ReadOnlyRow from "./ReadOnlyRow";
-import EditableRow from "./EditableRow";
 import Dropdown from 'react-bootstrap/Dropdown';
 
-export default function Management() {
+export default function ManagementAdministrator() {
     
     const [contacts, setContacts] = useState(null);
     const [isLoading, setLoading] = useState(true);
@@ -34,12 +32,27 @@ export default function Management() {
 
     const putAdministrator = async (id = -1, data = {}) => {
         data = JSON.stringify(data);
-        console.log(id);
-        console.log(data);
         const response = await fetch('api/administrators/' + id, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: data
+        })
+        return response.json();
+    }
+
+    const postAdministrator = async (data = {}) => {
+        data = JSON.stringify(data);
+        const response = await fetch('api/administrators', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: data
+        })
+        return response.json();
+    }
+
+    const deleteAdministrator = async (id = -1) => {
+        const response = await fetch('api/administrators/' + id, {
+            method: 'DELETE',
         })
         return response.json();
     }
@@ -96,6 +109,15 @@ export default function Management() {
         };
 
         const newContacts = [...contacts, newContact];
+
+        const newContactPost = {
+            adminFirstName: addFormData.adminFirstName,
+            adminLastName: addFormData.adminLastName,
+            adminMobile: addFormData.adminMobile,
+            adminEmail: addFormData.adminEmail,
+            adminPassword: ""
+        };
+        postAdministrator(newContactPost);
 
         setContacts(newContacts);
     };
@@ -156,7 +178,88 @@ export default function Management() {
 
         newContacts.splice(index, 1);
 
+        deleteAdministrator(contactId);
+
         setContacts(newContacts);
+    };
+
+    const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {
+        return (
+            <tr>
+                <td>{contact.adminFirstName}</td>
+                <td>{contact.adminLastName}</td>
+                <td>{contact.adminMobile}</td>
+                <td>{contact.adminEmail}</td>
+                <td>
+                    <button
+                        type="button"
+                        onClick={(event) => handleEditClick(event, contact)}
+                    >
+                        Edit
+                    </button>
+                    <button type="button" onClick={() => handleDeleteClick(contact.adminId)}>
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        );
+    };
+
+    const EditableRow = ({
+        editFormData,
+        handleEditFormChange,
+        handleCancelClick,
+    }) => {
+        return (
+            <tr>
+                <td>
+                    <input
+                        type="text"
+                        required="required"
+                        placeholder="Enter first name..."
+                        name="adminFirstName"
+                        value={editFormData.adminFirstName}
+                        onChange={handleEditFormChange}
+                    ></input>
+                </td>
+                <td>
+                    <input
+                        type="text"
+                        required="required"
+                        placeholder="Enter last name..."
+                        name="adminLastName"
+                        value={editFormData.adminLastName}
+                        onChange={handleEditFormChange}
+                    ></input>
+                </td>
+                <td>
+                    <input
+                        type="text"
+                        required="required"
+                        placeholder="Enter a phone number..."
+                        name="adminMobile"
+                        value={editFormData.adminMobile}
+                        onChange={handleEditFormChange}
+                    ></input>
+                </td>
+                <td>
+                    <input
+                        type="email"
+                        required="required"
+                        placeholder="Enter an email..."
+                        name="adminEmail"
+                        value={editFormData.adminEmail}
+                        onChange={handleEditFormChange}
+                    ></input>
+                </td>
+                <td>
+                    <button type="submit">Save</button>
+                    <button type="button" onClick={handleCancelClick}>
+                        Cancel
+                    </button>
+                </td>
+            </tr>
+        );
     };
 
     if (isLoading) {
@@ -170,13 +273,14 @@ export default function Management() {
         <div className="app-container">
             <Dropdown style={{ marginBottom: 30, marginTop: 30 }}>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic" size="lg">
-                    Dropdown Button
+                    Administrators
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                    <Dropdown.Item href="#/action-1">Links</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Texts</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Timeline Activities</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Upcoming Events</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
             <form onSubmit={handleEditFormSubmit}>
@@ -218,14 +322,14 @@ export default function Management() {
                     type="text"
                     name="adminFirstName"
                     required="required"
-                    placeholder="Enter a name..."
+                    placeholder="Enter first name..."
                     onChange={handleAddFormChange}
                 />
                 <input
                     type="text"
                     name="adminLastName"
                     required="required"
-                    placeholder="Enter an address..."
+                    placeholder="Enter last name..."
                     onChange={handleAddFormChange}
                 />
                 <input
@@ -244,6 +348,7 @@ export default function Management() {
                 />
                 <button type="submit">Add</button>
             </form>
+            <h3>Default password: lastname+mobile</h3>
         </div>
     );
 }

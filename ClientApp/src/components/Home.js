@@ -34,6 +34,19 @@ export default function Home() {
     
     const [isLoading, setLoading] = useState(true);
     const [homeTopVideo, setHomeTopVideo] = useState("");
+    const [banner1, setBanner1] = useState("");
+    const [banner2, setBanner2] = useState("");
+    const [banner3, setBanner3] = useState("");
+    const [card1, setCard1] = useState("");
+    const [card2, setCard2] = useState("");
+    const [card3, setCard3] = useState("");
+    const [homeTestimonyVid, setHomeTestimonyVid] = useState("");
+    const [homeTestimonyPortrait1, setHomeTestimonyPortrait1] = useState("");
+    const [homeTestimonyPortrait2, setHomeTestimonyPortrait2] = useState("");
+    const [club1, setClub1] = useState("");
+    const [club2, setClub2] = useState("");
+    const [club3, setClub3] = useState("");
+    const [club4, setClub4] = useState("");
 
     const getData = async () => {
         const response = await fetch('api/pages/link&iden=homeTopVideo');

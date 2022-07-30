@@ -21,7 +21,7 @@ export default function Login() {
         const data = await response.json();
         if (data.toString() == '1')
         {
-            window.location.href = 'management';
+            window.location.href = 'management/administrator';
             return;
         }
         else
@@ -35,7 +35,7 @@ export default function Login() {
         const data = await response.json();
         if (data.toString() == 'true')
         {
-            window.location.href = 'management';
+            window.location.href = 'management/administrator';
         }
     };
 
