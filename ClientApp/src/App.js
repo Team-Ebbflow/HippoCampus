@@ -21,12 +21,12 @@ function App() {
 
   useEffect(() => {
     unregister();
-    let isRedirected = sessionStorage.getItem('isRedirected6');
+    let isRedirected = sessionStorage.getItem('isRedirected8');
     if (!isRedirected) {
-      sessionStorage.setItem('isRedirected6', true);
+      sessionStorage.setItem('isRedirected8', true);
       window.location.reload(true);
     }
-  });
+  }, []);
 
   return (
     <div className='footer'>

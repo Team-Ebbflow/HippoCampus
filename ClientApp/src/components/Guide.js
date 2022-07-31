@@ -18,11 +18,17 @@ export default function Guide() {
     const [usefulLinkImage3, setUsefulLinkImage3] = useState("");
     const [usefulLinkImage4, setUsefulLinkImage4] = useState("");
     const [usefulLinkImage5, setUsefulLinkImage5] = useState("");
+    const [usefulLinkImage6, setUsefulLinkImage6] = useState("");
+    const [usefulLinkImage7, setUsefulLinkImage7] = useState("");
+    const [usefulLinkImage8, setUsefulLinkImage8] = useState("");
     const [usefulLink1, setUsefulLink1] = useState("");
     const [usefulLink2, setUsefulLink2] = useState("");
     const [usefulLink3, setUsefulLink3] = useState("");
     const [usefulLink4, setUsefulLink4] = useState("");
     const [usefulLink5, setUsefulLink5] = useState("");
+    const [usefulLink6, setUsefulLink6] = useState("");
+    const [usefulLink7, setUsefulLink7] = useState("");
+    const [usefulLink8, setUsefulLink8] = useState("");
 
     const [timelineEvents, setTimelineEvents] = useState("");
 
@@ -31,6 +37,9 @@ export default function Guide() {
     const [usefulLinkText3, setUsefulLinkText3] = useState("");
     const [usefulLinkText4, setUsefulLinkText4] = useState("");
     const [usefulLinkText5, setUsefulLinkText5] = useState("");
+    const [usefulLinkText6, setUsefulLinkText6] = useState("");
+    const [usefulLinkText7, setUsefulLinkText7] = useState("");
+    const [usefulLinkText8, setUsefulLinkText8] = useState("");
 
     const getData = async () => {
         let response = null;
@@ -88,6 +97,30 @@ export default function Guide() {
         }
 
         try {
+            response = await fetch('api/pages/link&iden=usefulLinkImage6');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLinkImage6(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=usefulLinkImage7');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLinkImage7(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=usefulLinkImage8');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLinkImage8(data);
+        }
+
+        try {
             response = await fetch('api/pages/link&iden=usefulLink1');
         } catch { }
         if (response.ok == true) {
@@ -125,6 +158,30 @@ export default function Guide() {
         if (response.ok == true) {
             data = await response.text();
             setUsefulLink5(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=usefulLink6');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLink6(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=usefulLink7');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLink7(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=usefulLink8');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLink8(data);
         }
 
         try {
@@ -167,6 +224,30 @@ export default function Guide() {
             setUsefulLinkText5(data);
         }
 
+        try {
+            response = await fetch('api/pages/text&iden=usefulLinkText6');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLinkText6(data);
+        }
+
+        try {
+            response = await fetch('api/pages/text&iden=usefulLinkText7');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLinkText7(data);
+        }
+
+        try {
+            response = await fetch('api/pages/text&iden=usefulLinkText8');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLinkText8(data);
+        }
+
         setLoading(false);
     };
 
@@ -198,7 +279,7 @@ export default function Guide() {
 
             <hr className="guideSplitLine"/>
 
-            <h1 style={{ marginTop: 50 }}>Useful links</h1>
+            <h1 style={{ marginTop: 50 }}>Academic Help</h1>
 
             <div className='guideGrid'>
                 <div className='clubContents'>
@@ -236,7 +317,11 @@ export default function Guide() {
                         </div>
                     </a>
                 </div>
+            </div>
 
+            <h1 style={{ marginTop: 50 }}>Student Care Resources</h1>
+
+            <div className='guideGrid'>
                 <div className='clubContents'>
                     <a href={usefulLink5}>
                         <div className='circle'>
@@ -244,7 +329,34 @@ export default function Guide() {
                             <h2 className="guideText">{usefulLinkText5}</h2>
                         </div>
                     </a>
-                </div> 
+                </div>
+
+                <div className='clubContents'>
+                    <a href={usefulLink6}>
+                        <div className='circle'>
+                            <img className='circleImageGuide' src={usefulLinkImage6} alt="guideImage" />
+                            <h2 className="guideText">{usefulLinkText6}</h2>
+                        </div>
+                    </a>
+                </div>
+
+                <div className='clubContents'>
+                    <a href={usefulLink7}>
+                        <div className='circle'>
+                            <img className='circleImageGuide' src={usefulLinkImage7} alt="guideImage" />
+                            <h2 className="guideText">{usefulLinkText7}</h2>
+                        </div>
+                    </a>
+                </div>
+
+                <div className='clubContents'>
+                    <a href={usefulLink8}>
+                        <div className='circle'>
+                            <img className='circleImageGuide' src={usefulLinkImage8} alt="guideImage" />
+                            <h2 className="guideText">{usefulLinkText8}</h2>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     );

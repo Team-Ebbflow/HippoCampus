@@ -54,6 +54,7 @@
 
 .clubGallery .clubGalleryItem .clubImage {
     height: 250px;
+    width: 400px;
     box-shadow: 3px 5px #888888;
     object-fit: cover;
 }

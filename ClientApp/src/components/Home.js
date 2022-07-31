@@ -33,6 +33,9 @@ export default function Home() {
     const [club2Image, setClub2Image] = useState("");
     const [club3Image, setClub3Image] = useState("");
     const [club4Image, setClub4Image] = useState("");
+    const [card1Link, setCard1Link] = useState("#");
+    const [card2Link, setCard2Link] = useState("#");
+    const [card3Link, setCard3Link] = useState("#");
 
     const [homeCardTitle1, setHomeCardTitle1] = useState("");
     const [homeCardTitle2, setHomeCardTitle2] = useState("");
@@ -174,6 +177,30 @@ export default function Home() {
         if (response.ok == true) {
             data = await response.text();
             setClub4Image(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=card1Link');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setCard1Link(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=card2Link');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setCard2Link(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=card3Link');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setCard3Link(data);
         }
 
         try {
@@ -391,7 +418,9 @@ export default function Home() {
                     <div className='homeCardContent'>
                         <p className='homeCardTitle'>{homeCardTitle1}</p>
                         <p className='homeCardParagraph'>{homeCardContent1}</p>
-                        <button className='homeCardButton'>Explore</button>
+                        <a href={card1Link}>
+                            <button className='homeCardButton'>Explore</button>
+                        </a>
                     </div>
                 </div>
 
@@ -400,7 +429,9 @@ export default function Home() {
                     <div className='homeCardContent'>
                         <p className='homeCardTitle'>{homeCardTitle2}</p>
                         <p className='homeCardParagraph'>{homeCardContent2}</p>
-                        <button className='homeCardButton'>Explore</button>
+                        <a href={card2Link}>
+                            <button className='homeCardButton'>Explore</button>
+                        </a>
                     </div>
                 </div>
 
@@ -409,7 +440,9 @@ export default function Home() {
                     <div className='homeCardContent'>
                         <p className='homeCardTitle'>{homeCardTitle3}</p>
                         <p className='homeCardParagraph'>{homeCardContent3}</p>
-                        <button className='homeCardButton'>Explore</button>
+                        <a href={card3Link}>
+                            <button className='homeCardButton'>Explore</button>
+                        </a>
                     </div>
                 </div>
             </div>
