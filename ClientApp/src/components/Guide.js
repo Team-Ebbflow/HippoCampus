@@ -23,6 +23,7 @@ export default function Guide() {
     const [usefulLink3, setUsefulLink3] = useState("");
     const [usefulLink4, setUsefulLink4] = useState("");
     const [usefulLink5, setUsefulLink5] = useState("");
+
     const [timelineEvents, setTimelineEvents] = useState("");
 
     const [usefulLinkText1, setUsefulLinkText1] = useState("");
@@ -32,12 +33,139 @@ export default function Guide() {
     const [usefulLinkText5, setUsefulLinkText5] = useState("");
 
     const getData = async () => {
-        const response = await fetch('api/pages/timelineall');
-        const data = await response.json();
-        for (var i = 0; i < data.length; i++) {
-            data[i].date = data[i].date.slice(0, 10);
+        let response = null;
+        let data = "";
+
+        try {
+            response = await fetch('api/pages/timelineall');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.json();
+            for (var i = 0; i < data.length; i++) {
+                data[i].date = data[i].date.slice(0, 10);
+            }
+            setTimelineEvents(data);
         }
-        setTimelineEvents(data);
+
+        try {
+            response = await fetch('api/pages/link&iden=usefulLinkImage1');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLinkImage1(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=usefulLinkImage2');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLinkImage2(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=usefulLinkImage3');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLinkImage3(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=usefulLinkImage4');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLinkImage4(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=usefulLinkImage5');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLinkImage5(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=usefulLink1');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLink1(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=usefulLink2');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLink2(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=usefulLink3');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLink3(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=usefulLink4');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLink4(data);
+        }
+
+        try {
+            response = await fetch('api/pages/link&iden=usefulLink5');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLink5(data);
+        }
+
+        try {
+            response = await fetch('api/pages/text&iden=usefulLinkText1');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLinkText1(data);
+        }
+
+        try {
+            response = await fetch('api/pages/text&iden=usefulLinkText2');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLinkText2(data);
+        }
+
+        try {
+            response = await fetch('api/pages/text&iden=usefulLinkText3');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLinkText3(data);
+        }
+
+        try {
+            response = await fetch('api/pages/text&iden=usefulLinkText4');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLinkText4(data);
+        }
+
+        try {
+            response = await fetch('api/pages/text&iden=usefulLinkText5');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setUsefulLinkText5(data);
+        }
 
         setLoading(false);
     };
@@ -77,7 +205,7 @@ export default function Guide() {
                     <a href={usefulLink1}>
                         <div className='circle'>
                             <img className='circleImageGuide' src={usefulLinkImage1} alt="guideImage" />
-                            <h2 className="guideText">Canvas</h2>
+                            <h2 className="guideText">{usefulLinkText1}</h2>
                         </div>
                     </a>
                 </div>
@@ -86,7 +214,7 @@ export default function Guide() {
                     <a href={usefulLink2}>
                         <div className='circle'>
                             <img className='circleImageGuide' src={usefulLinkImage2} alt="guideImage" />
-                            <h2 className="guideText">Canvas</h2>
+                            <h2 className="guideText">{usefulLinkText2}</h2>
                         </div>
                     </a>
                 </div>
@@ -95,7 +223,7 @@ export default function Guide() {
                     <a href={usefulLink3}>
                         <div className='circle'>
                             <img className='circleImageGuide' src={usefulLinkImage3} alt="guideImage" />
-                            <h2 className="guideText">Canvas</h2>
+                            <h2 className="guideText">{usefulLinkText3}</h2>
                         </div>
                     </a>
                 </div>
@@ -104,7 +232,7 @@ export default function Guide() {
                     <a href={usefulLink4}>
                         <div className='circle'>
                             <img className='circleImageGuide' src={usefulLinkImage4} alt="guideImage" />
-                            <h2 className="guideText">Canvas</h2>
+                            <h2 className="guideText">{usefulLinkText4}</h2>
                         </div>
                     </a>
                 </div>
@@ -113,7 +241,7 @@ export default function Guide() {
                     <a href={usefulLink5}>
                         <div className='circle'>
                             <img className='circleImageGuide' src={usefulLinkImage5} alt="guideImage" />
-                            <h2 className="guideText">Canvas</h2>
+                            <h2 className="guideText">{usefulLinkText5}</h2>
                         </div>
                     </a>
                 </div> 

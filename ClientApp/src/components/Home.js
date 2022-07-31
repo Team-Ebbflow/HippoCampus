@@ -43,6 +43,23 @@ export default function Home() {
     const [homeTestimonyContent1, setHomeTestimonyContent1] = useState("");
     const [homeTestimonyContent2, setHomeTestimonyContent2] = useState("");
 
+    const [event1, setEvent1] = useState({
+        eventContent: "",
+        time: "",
+    });
+    const [event2, setEvent2] = useState({
+        eventContent: "",
+        time: "",
+    });
+    const [event3, setEvent3] = useState({
+        eventContent: "",
+        time: "",
+    });
+    const [event4, setEvent4] = useState({
+        eventContent: "",
+        time: "",
+    });
+
     const getData = async () => {
         let response = null;
         let data = "";
@@ -223,6 +240,38 @@ export default function Home() {
             setHomeTestimonyContent2(data);
         }
 
+        try {
+            response = await fetch('api/pages/event&iden=event1');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.json();
+            setEvent1(data);
+        }
+
+        try {
+            response = await fetch('api/pages/event&iden=event2');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.json();
+            setEvent2(data);
+        }
+
+        try {
+            response = await fetch('api/pages/event&iden=event3');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.json();
+            setEvent3(data);
+        }
+
+        try {
+            response = await fetch('api/pages/event&iden=event4');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.json();
+            setEvent4(data);
+        }
+
         setLoading(false);
     };
 
@@ -261,7 +310,7 @@ export default function Home() {
                             <TimelineItem>
                                 <TimelineOppositeContent color="text.secondary">
                                     <div className='timelineText'>
-                                        09:30 am
+                                        {event1.time}
                                     </div>
                                 </TimelineOppositeContent>
                                 <TimelineSeparator>
@@ -270,14 +319,14 @@ export default function Home() {
                                 </TimelineSeparator>
                                 <TimelineContent>
                                     <div className='timelineText'>
-                                        Eat
+                                        {event1.eventContent}
                                     </div>
                                 </TimelineContent>
                             </TimelineItem>
                             <TimelineItem>
                                 <TimelineOppositeContent color="text.secondary">
                                     <div className='timelineText'>
-                                        10:30am
+                                        {event2.time}
                                     </div>
                                 </TimelineOppositeContent>
                                 <TimelineSeparator>
@@ -286,14 +335,14 @@ export default function Home() {
                                 </TimelineSeparator>
                                 <TimelineContent>
                                     <div className='timelineText'>
-                                        Code
+                                        {event2.eventContent}
                                     </div>
                                 </TimelineContent>
                             </TimelineItem>
                             <TimelineItem>
                                 <TimelineOppositeContent color="text.secondary">
                                     <div className='timelineText'>
-                                        12:00 am
+                                        {event3.time}
                                     </div>
                                 </TimelineOppositeContent>
                                 <TimelineSeparator>
@@ -302,14 +351,14 @@ export default function Home() {
                                 </TimelineSeparator>
                                 <TimelineContent>
                                     <div className='timelineText'>
-                                        Sleep
+                                        {event3.eventContent}
                                     </div>
                                 </TimelineContent>
                             </TimelineItem>
                             <TimelineItem>
                                 <TimelineOppositeContent color="text.secondary">
                                     <div className='timelineText'>
-                                        9:00 am
+                                        {event4.time}
                                     </div>
                                 </TimelineOppositeContent>
                                 <TimelineSeparator>
@@ -318,7 +367,7 @@ export default function Home() {
                                 </TimelineSeparator>
                                 <TimelineContent>
                                     <div className='timelineText'>
-                                        Repeat
+                                        {event4.eventContent}
                                     </div>
                                 </TimelineContent>
                             </TimelineItem>
