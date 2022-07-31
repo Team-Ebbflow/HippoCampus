@@ -45,6 +45,8 @@ export default function Home() {
     const [homeCardContent3, setHomeCardContent3] = useState("");
     const [homeTestimonyContent1, setHomeTestimonyContent1] = useState("");
     const [homeTestimonyContent2, setHomeTestimonyContent2] = useState("");
+    const [homeTestimonyName1, setHomeTestimonyName1] = useState("");
+    const [homeTestimonyName2, setHomeTestimonyName2] = useState("");
 
     const [event1, setEvent1] = useState({
         eventContent: "",
@@ -268,6 +270,22 @@ export default function Home() {
         }
 
         try {
+            response = await fetch('api/pages/text&iden=homeTestimonyName1');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setHomeTestimonyName1(data);
+        }
+
+        try {
+            response = await fetch('api/pages/text&iden=homeTestimonyName2');
+        } catch { }
+        if (response.ok == true) {
+            data = await response.text();
+            setHomeTestimonyName2(data);
+        }
+
+        try {
             response = await fetch('api/pages/event&iden=event1');
         } catch { }
         if (response.ok == true) {
@@ -464,6 +482,7 @@ export default function Home() {
                         <div className='mask1'>
                             <img src={homeTestimonyPortrait1} alt="portrait" className='portraitImage'></img>
                         </div>
+                        <p className='testimonyName'>{homeTestimonyName1}</p>
                     </div>
 
                     <div className='testimonySticker' style={{marginLeft:30}}>
@@ -472,6 +491,7 @@ export default function Home() {
                         <div className='mask1'>
                             <img src={homeTestimonyPortrait2} alt="portrait" className='portraitImage'></img>
                         </div>
+                        <p className='testimonyName'>{homeTestimonyName2}</p>
                     </div>
                 </div>
             </div>

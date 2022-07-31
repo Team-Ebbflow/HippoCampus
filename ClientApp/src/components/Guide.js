@@ -319,7 +319,7 @@ export default function Guide() {
                 </div>
             </div>
 
-            <h1 style={{ marginTop: 50 }}>Student Care Resources</h1>
+            <h1 style={{ marginTop: 50 }}>Student Care</h1>
 
             <div className='guideGrid'>
                 <div className='clubContents'>
