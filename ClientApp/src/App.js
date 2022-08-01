@@ -21,9 +21,9 @@ function App() {
 
   useEffect(() => {
     unregister();
-    let isRedirected = sessionStorage.getItem('isRedirected11');
+    let isRedirected = sessionStorage.getItem('isRedirected12');
     if (!isRedirected) {
-      sessionStorage.setItem('isRedirected11', true);
+      sessionStorage.setItem('isRedirected12', true);
       window.location.reload(true);
     }
   }, []);
