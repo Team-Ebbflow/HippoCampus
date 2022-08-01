@@ -49,7 +49,7 @@ export default function Login() {
 
     return (
         <div>
-            <form>
+            <form className='login-form'>
                 <label>
                     User ID : <input type="text" name="user_id" value={username} onChange={(e) => setUsername(e.target.value)} />
                 </label>
@@ -57,8 +57,8 @@ export default function Login() {
                 <label>
                     Password: <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </label>
+                <button onClick={handleLogin} className='submitButton'>Submit</button>
             </form>
-            <button onClick={handleLogin}>Submit</button>
 
             <Dialog
                 open={open}

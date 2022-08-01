@@ -247,8 +247,8 @@ export default function Club() {
                 <div className='clubFlex'>
                     <div id='one'>
                         <h2><a href={club1Link}>{club1Title}</a></h2>
-                        <img className='image' src='https://uploads-ssl.webflow.com/620e233602defed01f7d3d30/624a8af381d5ed1bfd3cabdb_instagram.png' alt='socialIcon'></img>
-                        <img className='image' src='https://uploads-ssl.webflow.com/620e233602defed01f7d3d30/624a8aea4a7c60664df4ca6a_linkedin.png' alt='socialIcon'></img>
+                        <a href={club1Link}><img className='image' src='https://uploads-ssl.webflow.com/620e233602defed01f7d3d30/624a8af381d5ed1bfd3cabdb_instagram.png' alt='socialIcon'></img></a>
+                        <a href={club1Link}><img className='image' src='https://uploads-ssl.webflow.com/620e233602defed01f7d3d30/624a8aea4a7c60664df4ca6a_linkedin.png' alt='socialIcon'></img></a>
                         <img className='image' src='https://uploads-ssl.webflow.com/620e233602defed01f7d3d30/624a8ae7186ec7a1dc419d2e_youtube.png' alt='socialIcon'></img>
                     </div>
                     <div id='two'>

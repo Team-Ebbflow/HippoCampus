@@ -21,16 +21,16 @@ function App() {
 
   useEffect(() => {
     unregister();
-    let isRedirected = sessionStorage.getItem('isRedirected12');
+    let isRedirected = sessionStorage.getItem('isRedirected16');
     if (!isRedirected) {
-      sessionStorage.setItem('isRedirected12', true);
+      sessionStorage.setItem('isRedirected16', true);
       window.location.reload(true);
     }
   }, []);
 
   return (
     <div className='footer'>
-      <ScrollToTop smooth color="#6f00ff" className='goToTop'/>
+      <ScrollToTop smooth color="#ff9d4d" className='goToTop'/>
       <Router>
         <NavMenu />
         <body>
