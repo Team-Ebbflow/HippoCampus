@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+.footerDiv {
+    display: grid;
+    background-color: black;
+    height: 550px;
+    color: #FFFBEE;
+    grid-template-columns: 25.5% 17% 17% 17% 25.5%;
+    grid-template-rows: auto;
+    overflow: hidden;
+    font-family: Oswald;
+}
+
+.mapComponent {
+    height: 300px;
+    width: 300px;
+}
+
+.grid-item-a {
+    position: relative;
+    padding: 50px 0 100px 0;
+    grid-column-start: 2;
+}
+
+.grid-item-b {
+    position: relative;
+    padding: 50px 0 100px 0;
+    grid-column-start: 3;
+}
+
+.grid-item-c {
+    padding: 50px 0 100px 0;
+    grid-column-start: 4;
+}
+
+h2{
+    color: #ff9d4d;
+    padding: 10px 0;
+}
+
+.footerText{
+    font-size: 16px;
+    font-family: Montserrat, sans-serif;
+}
+
+.enquiryField {
+    width: 80%;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+.enquiryTitle{
+    font-size: 14px;
+    margin: 2px;
+}
+
+#submitButton{
+    width: 5vw;
+    height: 5vh;
+    background-color: #ff9d4d;
+    position: absolute;
+    bottom: 24%;
+    left: 0;
+}
+
+#adminButton{
+    position: absolute;
+    bottom: 24%;
+    width: 6vw;
+    height: 5vh;
+    background-color: #ff9d4d;
+    left: 0;
+}
+
+.image-3 {
+    display: block;
+}
+
+.navBottomLine {
+    position: absolute;
+    display: flex;
+    bottom: 3vh;
+    z-index: 1;
+    right: 0;
+}
+
+.navBottomLinks {
+    margin: 0 20px;
+    font-family: Oswald;
+    cursor: pointer;
+    word-spacing: 1.5px;
+    color: #fffbee;
+    transition: 0.3s;
+}
+
+.navBottomLinks:hover {
+    color: #ff9d4d;
+}
+
+.navBottom {
+    position: relative;
+    margin-right: 22%;
+}

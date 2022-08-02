@@ -1,50 +1,29 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import './NavMenu.css';
 import { Navbar, NavDropdown, Nav, Container } from 'react-bootstrap';
 
-export class NavMenu extends Component {
-  static displayName = NavMenu.name;
-
-  constructor (props) {
-    super(props);
-
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.state = {
-      collapsed: true
-    };
-  }
-
-  toggleNavbar () {
-    this.setState({
-      collapsed: !this.state.collapsed
-    });
-  }
-
-  render () {
+export default function NavMenu() {
     return (
-      <header>
-            <Navbar expand="lg" style={{ backgroundColor: 'orange' }} >
-                <Container >
-                    <Navbar.Brand href="#home">HippoCampusUON</Navbar.Brand>
+    <header>
+        <Navbar expand="xl" style={{padding: '0.20%'}}>
+              <Container>
+                    <Navbar.Brand href="home">
+                        <img
+                            src="https://cdn.discordapp.com/attachments/989084273522909234/989084301444399114/hippocampus_logo_black.png"
+                            width="100"
+                            height="100"
+                        />
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="ml-auto">
-                            <Nav.Link href="#home">Home</Nav.Link>
-                            <Nav.Link href="#">Freshie Guide</Nav.Link>
-                            <Nav.Link href="#">Events</Nav.Link>
-                            <Nav.Link href="#">Chapters & Clubs</Nav.Link>
-                            <NavDropdown title="Resourse" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#">Link 1</NavDropdown.Item>
-                                <NavDropdown.Item href="#">Link 2</NavDropdown.Item>
-                                <NavDropdown.Item href="#">Link 3</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                            </NavDropdown>
+                        <Nav>
+                            <Nav.Link href="home">Home</Nav.Link>
+                            <Nav.Link href="guide">Freshie Guide</Nav.Link>
+                            <Nav.Link href="club">Chapters & Clubs</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
-                </Container>
-            </Navbar>
-      </header>
-    );
-  }
+              </Container>
+        </Navbar>
+    </header>
+  );
 }

@@ -1,1 +1,341 @@
-﻿
+﻿@import "~react-image-gallery/styles/css/image-gallery.css";
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+.bannerImg{
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+body {
+    background-color: #fffbee !important;
+}
+
+#carouselMain {
+    width: auto;
+    display: block;
+    margin: 0 20px;
+}
+
+.carousel.item {
+    height: 100%;
+}
+
+#homebgvideo {
+    margin-top: -300px;
+    margin-bottom: 50px;
+}
+
+#homeCarouselGrid {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    padding: 1%;
+}
+
+.homeCardImage {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+    filter: brightness(50%);
+    -webkit-filter: brightness(50%);
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.homeCardGroup {
+    margin: 50px 15% 100px;
+    display: grid;
+    height: 300px;
+    grid-template-columns: 40% 30% 30%;
+}
+
+.homeCard {
+    height: 100%;
+    margin: 0 5%;
+    position: relative;
+}
+
+.homeCardContent{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 2vw;
+}
+
+.homeCardTitle{
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: bisque;
+    font-family: Montserrat, sans-serif;
+}
+
+.homeCardParagraph{
+    font-size: 26px;
+    letter-spacing: 2px;
+    line-height: 1.5em;
+    color: white;
+    font-family: montserrat, sans-serif;
+}
+
+.homeCardButton{
+    position: absolute;
+    background-color: white;
+    font-size: 16px;
+    padding: 10px 25px;
+    border: 0;
+    border-radius: 5px;
+    bottom: 0;
+    font-family: montserrat, sans-serif;
+    transition: 0.3s;
+}
+
+.homeCardButton:hover {
+    font-size: 18px;
+}
+
+.circle {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+}
+
+.clubGrid {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    margin: 20px 15% 50px;
+    height: 20vw;
+}
+
+.clubContents {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 30px;
+}
+
+.circleImage {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+    position: absolute;
+    top: 0;
+    border-radius: 1000px;
+    border-style: solid;
+    border-width: 15px;
+    border-color: #ced8ff;
+    transition: 0.3s;
+}
+
+.circleImage:hover {
+    border-width: 0px;
+}
+
+h1 {
+    font-family: Oswald;
+    margin-left: 15%;
+}
+
+.timeLine {
+    background-color: #ced8ff;
+    margin: 0 40px 0 20px;
+    padding-top: 20px;
+    border-radius: 10px;
+}
+
+.guideSplitLine {
+    height: 4px;
+    width: 80%;
+    border-radius: 10px;
+    color: #ff9d4d;
+    background-color: #ff9d4d;
+    margin: 0 auto;
+    border: 0;
+}
+
+.circleImageGuide {
+    height: 60%;
+    width: 60%;
+    object-fit: cover;
+    image-rendering: pixelated;
+    position: absolute;
+    top: 0;
+    border-radius: 50px;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.guideGrid {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    margin: 20px 15% 50px;
+    height: 10vw;
+}
+
+.guideCover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    background-color: #ced8ff;
+    border-radius: 1000px;
+}
+
+.guideText {
+    text-align: center;
+    position: absolute;
+    opacity: 0;
+    transition: 0.3s;
+    top: 25%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    color: #0366d6;
+    font-size: 36px;
+    font-family: montserrat, sans-serif;
+    font-weight: bolder;
+}
+
+.circle:hover .guideText {
+    opacity: 1;
+}
+
+.circle:hover .circleImageGuide {
+    opacity: 0.3;
+}
+
+.homeVideoSection {
+    display: flex;
+    height: 600px;
+    background-color: #ced8ff;
+    padding: 50px 12%;
+    margin: 0 0 50px 0;
+}
+
+.testimony {
+    font-family: Oswald;
+    color: black;
+}
+
+.testimonyStickerBoard {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+    margin: 50px;
+}
+
+.testimonySticker {
+    padding: 20px;
+    font-size: 30px;
+    margin: 0 20px;
+    text-align: center;
+    position: relative;
+}
+
+.testimonyVid {
+    width: 100%;
+}
+
+.sticker {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;                        
+    left: 0;
+    right: 0;
+}
+
+.portrait {
+    height: 20vh;
+    object-fit: cover;
+}
+
+.testimonyText {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    bottom: 0;                        
+    left: 0;
+    right: 0;
+    margin: 30px auto auto auto;
+    padding: 10px 20px;
+    overflow-wrap: break-word;
+    font-size: 18px;
+    font-family: montserrat, sans-serif;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.testimonyName {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: -70px;
+    margin-right: 150px;
+    font-family: montserrat, sans-serif;
+    z-index: 11;
+    font-size: 20px;
+    text-align: right;
+    width: 50%;
+    font-style: italic;
+    font-weight: bolder;
+}
+
+.timelineText {
+    font-family: Montserrat, sans-serif;
+    letter-spacing: 1.5px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.goToTop {
+    width: 60px !important;
+    height: 60px !important;
+    z-index: 100 !important;
+}
+
+.timelineTitle {
+    margin: 0 0 15px 20px;
+    padding: 0;
+    font-family: Oswald;
+}
+
+.mask1 {
+    -webkit-mask-image: url(https://upload.wikimedia.org/wikipedia/commons/8/8e/Pan_Blue_Circle.png);
+    mask-image: url(https://upload.wikimedia.org/wikipedia/commons/8/8e/Pan_Blue_Circle.png);
+    -webkit-mask-size: 200px;
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    position: absolute;
+    z-index: 10;
+    bottom: -20%;
+    left: 50%;
+}
+
+.portraitImage {
+    height: 200px;
+    object-fit: cover;
+}
+
+.vertical-timeline-element-title {
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+}
+
+.vertical-timeline-element-date {
+    font-family: Montserrat, sans-serif;
+    font-weight: 800;
+}
+
+h2 a {
+    color: #ff9d4d;
+}

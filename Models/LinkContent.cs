@@ -6,10 +6,12 @@ namespace HippocampusUON.Models
     public class LinkContent
     {
         [Key]
-        public int linkContentID { get; set; }
+        public int Id { get; set; }
 
-        public string linkURI { get; set; }
+        public string Identifier { get; set; }
 
-        public string linkDescription { get; set; }
+        public string Content { get; set; }
+
+        public string Description { get; set; }
     }
 }

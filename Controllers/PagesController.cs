@@ -26,84 +26,35 @@ namespace HippocampusUON.Controllers
             _context = context;
         }
 
-        // GET: api/Pages
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<PagesTable>>> GetPagesTable()
+        // GET: api/pages/linkall
+        [HttpGet("linkall")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<LinkContent>>> GetLinkContentAll()
         {
-            return await _context.PagesTable.ToListAsync();
+            return await _context.LinkContents
+                .Select(x => new LinkContent { Id = x.Id, Identifier = x.Identifier, Content = x.Content, Description = x.Description })
+                .ToListAsync();
         }
 
-        // GET: api/Pages/page&id={id}
-        [HttpGet("page&id={id}")]
+        // GET: api/pages/link&iden={iden}
+        [HttpGet("link&iden={iden}")]
         [AllowAnonymous]
-        public async Task<ActionResult<PagesTable>> GetPagesTable(int id)
+        public ActionResult<string> GetLinkContent(string iden)
         {
-            var pagesTable = await _context.PagesTable.FindAsync(id);
-
-            if (pagesTable == null)
-            {
-                return NotFound();
-            }
-
-            return pagesTable;
-        }
-
-        // GET: api/pages/image&id={id}
-        [HttpGet("image&id={id}")]
-        [AllowAnonymous]
-        public async Task<ActionResult<ImageContent>> GetImageContent(int id)
-        {
-            var imageContent = await _context.ImageContents.FindAsync(id);
-            //var imageContent = await _context.ImageContents.FromSqlInterpolated($"SELECT [dbo].[PagesTable].pageID, imageContentID, imageURI, imageDescription FROM [dbo].[ImageContents] INNER JOIN [dbo].[PagesTable] ON [dbo].[PagesTable].pageID = [dbo].[ImageContents].pageID WHERE [dbo].[ImageContents].imageContentID = {id}")
-
-            if (imageContent == null)
-            {
-                return NotFound();
-            }
-
-            return imageContent;
-        }
-
-        // GET: api/pages/link&id={id}
-        [HttpGet("link&id={id}")]
-        [AllowAnonymous]
-        public async Task<ActionResult<LinkContent>> GetLinkContent(int id)
-        {
-            var linkContent = await _context.LinkContents.FindAsync(id);
-
+            var linkContent = _context.LinkContents.FromSqlInterpolated($"SELECT * FROM [dbo].[LinkContents] WHERE [dbo].[LinkContents].Identifier = {iden}").FirstOrDefault();
             if (linkContent == null)
             {
                 return NotFound();
             }
 
-            return linkContent;
-        }
-
-        // GET: api/pages/text&id={id}
-        [HttpGet("text&id={id}")]
-        [AllowAnonymous]
-        public async Task<ActionResult<TextContent>> GetTextContent(int id)
-        {
-            var textContent = await _context.TextContents.FindAsync(id);
-
-            if (textContent == null)
-            {
-                return NotFound();
-            }
-
-            return textContent;
+            return linkContent.Content;
         }
 
         // PUT: api/Pages/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPagesTable(int id, PagesTable pagesTable)
+        [HttpPut("link&{id}")]
+        public async Task<IActionResult> PutLinkContent(LinkContent linkContent)
         {
-            if (id != pagesTable.pageID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(pagesTable).State = EntityState.Modified;
+            _context.Entry(linkContent).State = EntityState.Modified;
 
             try
             {
@@ -111,48 +62,223 @@ namespace HippocampusUON.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PagesTableExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
-            return NoContent();
+            return Ok("1");
         }
 
         // POST: api/Pages
-        [HttpPost]
-        public async Task<ActionResult<PagesTable>> PostPagesTable(PagesTable pagesTable)
+        [HttpPost("link")]
+        public async Task<ActionResult<LinkContent>> PostLinkContent(LinkContent linkContent)
         {
-            _context.PagesTable.Add(pagesTable);
+            _context.LinkContents.Add(linkContent);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPagesTable", new { id = pagesTable.pageID }, pagesTable);
+            return CreatedAtAction("GetLinkContent", new { id = linkContent.Id }, linkContent);
         }
 
         // DELETE: api/Pages/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<PagesTable>> DeletePagesTable(int id)
+        [HttpDelete("link&{id}")]
+        public async Task<ActionResult<LinkContent>> DeleteLinkContent(int id)
         {
-            var pagesTable = await _context.PagesTable.FindAsync(id);
-            if (pagesTable == null)
+            var content = await _context.LinkContents.FindAsync(id);
+            if (content == null)
             {
                 return NotFound();
             }
 
-            _context.PagesTable.Remove(pagesTable);
+            _context.LinkContents.Remove(content);
             await _context.SaveChangesAsync();
 
-            return pagesTable;
+            return content;
         }
 
-        private bool PagesTableExists(int id)
+
+
+
+
+        [HttpGet("textall")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<TextContent>>> GetTextContentAll()
         {
-            return _context.PagesTable.Any(e => e.pageID == id);
+            return await _context.TextContents
+                .Select(x => new TextContent { Id = x.Id, Identifier = x.Identifier, Content = x.Content, Description = x.Description })
+                .ToListAsync();
+        }
+
+        [HttpGet("text&iden={iden}")]
+        [AllowAnonymous]
+        public ActionResult<string> GetTextContent(string iden)
+        {
+            var textContent = _context.TextContents.FromSqlInterpolated($"SELECT * FROM [dbo].[TextContents] WHERE [dbo].[TextContents].Identifier = {iden}").FirstOrDefault();
+            if (textContent == null)
+            {
+                return NotFound();
+            }
+
+            return textContent.Content;
+        }
+
+        [HttpPut("text&{id}")]
+        public async Task<IActionResult> PutTextContent(TextContent textContent)
+        {
+            _context.Entry(textContent).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+
+            return Ok("1");
+        }
+
+        [HttpPost("text")]
+        public async Task<ActionResult<TextContent>> PostTextContent(TextContent textContent)
+        {
+            _context.TextContents.Add(textContent);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetTextContent", new { id = textContent.Id }, textContent);
+        }
+
+        [HttpDelete("text&{id}")]
+        public async Task<ActionResult<TextContent>> DeleteTextContent(int id)
+        {
+            var content = await _context.TextContents.FindAsync(id);
+            if (content == null)
+            {
+                return NotFound();
+            }
+
+            _context.TextContents.Remove(content);
+            await _context.SaveChangesAsync();
+
+            return content;
+        }
+
+
+
+
+        [HttpGet("timelineall")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<TimelineActivities>>> GetTimelineActivityAll()
+        {
+            return await _context.TimelineActivities
+                .Select(x => new TimelineActivities { Id = x.Id, Identifier = x.Identifier, EventContent = x.EventContent, Date = x.Date })
+                .OrderBy(x => x.Date)
+                .ToListAsync();
+        }
+
+        [HttpPut("timeline&{id}")]
+        public async Task<IActionResult> PutTimelineActivity(TimelineActivities timelineActivities)
+        {
+            _context.Entry(timelineActivities).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+
+            return Ok("1");
+        }
+
+        [HttpPost("timeline")]
+        public async Task<ActionResult<TimelineActivities>> PostTimelineActivity(TimelineActivities timelineActivities)
+        {
+            _context.TimelineActivities.Add(timelineActivities);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetTimelineActivity", new { id = timelineActivities.Id }, timelineActivities);
+        }
+
+        [HttpDelete("timeline&{id}")]
+        public async Task<ActionResult<TimelineActivities>> DeleteTimelineActivity(int id)
+        {
+            var content = await _context.TimelineActivities.FindAsync(id);
+            if (content == null)
+            {
+                return NotFound();
+            }
+
+            _context.TimelineActivities.Remove(content);
+            await _context.SaveChangesAsync();
+
+            return content;
+        }
+
+
+
+
+        [HttpGet("eventall")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<UpcomingEvents>>> GetUpcomingEventsAll()
+        {
+            return await _context.UpcomingEvents
+                .Select(x => new UpcomingEvents { Id = x.Id, Identifier = x.Identifier, EventContent = x.EventContent, Time = x.Time })
+                .ToListAsync();
+        }
+
+        [HttpGet("event&iden={iden}")]
+        [AllowAnonymous]
+        public ActionResult<UpcomingEvents> GetUpcomingEvent(string iden)
+        {
+            var upcomingEvent = _context.UpcomingEvents.FromSqlInterpolated($"SELECT * FROM [dbo].[UpcomingEvents] WHERE [dbo].[UpcomingEvents].Identifier = {iden}").FirstOrDefault();
+            if (upcomingEvent == null)
+            {
+                return NotFound();
+            }
+
+            return upcomingEvent;
+        }
+
+        [HttpPut("event&{id}")]
+        public async Task<IActionResult> PutUpcomingEvent(UpcomingEvents upcomingEvents)
+        {
+            _context.Entry(upcomingEvents).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+
+            return Ok("1");
+        }
+
+        [HttpPost("event")]
+        public async Task<ActionResult<UpcomingEvents>> PostUpcomingEvent(UpcomingEvents upcomingEvents)
+        {
+            _context.UpcomingEvents.Add(upcomingEvents);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetUpcomingEvent", new { id = upcomingEvents.Id }, upcomingEvents);
+        }
+
+        [HttpDelete("event&{id}")]
+        public async Task<ActionResult<UpcomingEvents>> DeleteUpcomingEvent(int id)
+        {
+            var content = await _context.UpcomingEvents.FindAsync(id);
+            if (content == null)
+            {
+                return NotFound();
+            }
+
+            _context.UpcomingEvents.Remove(content);
+            await _context.SaveChangesAsync();
+
+            return content;
         }
     }
 }

@@ -74,12 +74,10 @@ namespace HippocampusUON.Controllers
         // PUT: api/Administrators/5
         // return: 1: Update successful, -1: input adminId is missing or not same as in the HttpPut call, -2: the id does not exist
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutAdministrator(int id, Administrator administrator)
+        public async Task<ActionResult> PutAdministrator(Administrator administrator)
         {
-            if (id != administrator.adminId)
-            {
-                return Problem("The adminId in Body is not same as in the HttpPut request", statusCode: 420);
-            }
+            var password = await _context.Administrators.AsNoTracking().FirstOrDefaultAsync(x => x.adminId == administrator.adminId);
+            administrator.adminPassword = password.adminPassword;
 
             _context.Entry(administrator).State = EntityState.Modified;
 
@@ -89,14 +87,7 @@ namespace HippocampusUON.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AdministratorExists(id))
-                {
-                    return Problem("The adminId doesn't exist", statusCode: 420);
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("1");
@@ -106,6 +97,7 @@ namespace HippocampusUON.Controllers
         [HttpPost]
         public async Task<ActionResult> PostAdministrator(Administrator administrator)
         {
+            administrator.adminPassword = administrator.adminLastName + administrator.adminMobile;
             _context.Administrators.Add(administrator);
             await _context.SaveChangesAsync();
 
@@ -134,11 +126,6 @@ namespace HippocampusUON.Controllers
         public ActionResult<bool> IsAdministrator()
         {
             return HttpContext.User.Identity.IsAuthenticated;
-        }
-
-        private bool AdministratorExists(int id)
-        {
-            return _context.Administrators.Any(e => e.adminId == id);
         }
     }
 }

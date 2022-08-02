@@ -1,0 +1,28 @@
+.submitButton {
+  margin-top: 40px;
+  cursor: pointer;
+  font-size: 15px;
+  background: #01d28e;
+  border: 1px solid #01d28e;
+  color: #fff;
+  padding: 10px 20px;
+  width: 100px;
+  border-radius: 10px;
+}
+
+.submitButton:hover {
+  background: #6cf0c2;
+}
+
+
+.login-form {
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
+input {
+  font-size: 16px;
+}

@@ -1,0 +1,64 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Economica:400,700);
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.clubLine {
+    height: 600px;
+    margin: 50px 10%;
+}
+
+.clubLine #one {
+    font-size: 30px;
+    flex: 2;
+}
+
+.clubLine h2 {
+    font-size: 30pt;
+    padding-top: 0;
+    font-family: montserrat, sans-serif;
+    font-weight: bolder;
+}
+
+.clubLine #two {
+    font-size: 20px;
+    font-family: montserrat, sans-serif;
+    flex: 3;
+    overflow-wrap: break-word;
+}
+
+.clubLine .clubIcon {
+    width: 150px;
+    object-fit: cover;
+    top: 0;
+}
+
+.clubLine .clubFlex {
+    display: flex;
+    margin: 50px 0;
+}
+
+.clubLine .image {
+    height: 50px;
+    margin: 5px;
+    object-fit: cover;
+    transition: 0.3s;
+}
+
+.clubLine .image:hover {
+    height: 60px;
+}
+
+.clubGallery {
+    display: flex;
+    height: 250px;
+}
+
+.clubGallery .clubGalleryItem {
+    flex: 1;
+}
+
+.clubGallery .clubGalleryItem .clubImage {
+    height: 250px;
+    width: 400px;
+    box-shadow: 3px 5px #888888;
+    object-fit: cover;
+}
