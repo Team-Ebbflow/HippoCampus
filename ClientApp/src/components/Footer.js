@@ -46,7 +46,7 @@ export default function Footer() {
                     <h2>Campus Location</h2>
                     <div style={{ height: '100%', paddingBottom: '30%' }}>
                         <WrappedMap
-                            googleMapURL={'*googleMapURL'}
+                            googleMapURL={'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyApaKxXgGACpvAubM5MGmHnOsQlgVu4ztw'}
                             loadingElement={<div style={{ height: "100%" }} />}
                             containerElement={<div style={{ height: "100%" }} />}
                             mapElement={<div style={{ height: "100%" }} />}
